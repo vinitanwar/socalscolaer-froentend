@@ -4,14 +4,32 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { newsData } from './NewsData';
+import { useSelector } from 'react-redux';
+import { imageurl } from './reduxstore/utils';
 
 export default function EditorPicksCarousel() {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
+    const topNewsState= useSelector(state=>state.topnews)
+    const [allArtical,setAllArticles]=useState()
+  
 
+ useEffect(() => {
+    if (!topNewsState.isLoading && topNewsState.info?.success) {
+      setAllArticles(topNewsState.info.news || []);
+    }
+  }, [topNewsState]);
+
+const setDate=(ndate)=>{
+  const date = new Date(ndate);
+
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = date.toLocaleDateString('en-US', options);
+return formattedDate
+}
     return (
         <section className="bg-gray-100 py-10 lg:py-20 px-5 lg:px-24">
             <div className="container mx-auto">
@@ -54,24 +72,24 @@ export default function EditorPicksCarousel() {
                         1024: { slidesPerView: 4 },
                     }}
                 >
-                    {newsData.map((item) => (
+                    {allArtical?.map((item) => (
                         <SwiperSlide key={item.id}>
                             <div className="bg-white h-[330px] overflow-hidden">
                                 <div className="relative group">
                                     <img
-                                        src={item.images}
-                                        alt={item.title}
+                                        src={`${imageurl}/${item?.image}`}
+                                        alt={item?.title}
                                         className="w-full h-48 object-cover"
                                     />
                                 </div>
                                 <div className="p-4">
                                     <div className="text-sm flex items-center mb-2">
                                         <i className="fa fa-calendar mr-1" aria-hidden="true"></i>
-                                        {item.date}
+                                       {setDate(item?.created_at)}
                                     </div>
                                     <h3 className="text-lg font-semibold">
-                                        <a href={`/news/${item.slug}`} className="hover:text-[#605ca8]">
-                                            {item.title}
+                                        <a href={`/news/${item?.slug}`} className="hover:text-[#605ca8]">
+                                            {item?.title}
                                         </a>
                                     </h3>
                                 </div>

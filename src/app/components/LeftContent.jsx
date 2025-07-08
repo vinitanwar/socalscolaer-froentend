@@ -6,7 +6,12 @@ import Image from "next/image";
 import ContactRight from './ContactRight';
 import { useRouter } from 'next/navigation';
 import {  useSelector } from 'react-redux';
+import LatestNews from './LatestNews';
+import axios from 'axios';
+import { baseurl, imageurl } from './reduxstore/utils';
+import Link from 'next/link';
 
+// import {  FaCalendar } from 'react-icons/fa';
 
 const LeftContent = ({ setSelectedCategory, getslug = true }) => {
 
@@ -15,6 +20,7 @@ const LeftContent = ({ setSelectedCategory, getslug = true }) => {
   const route = useRouter();
 const categoriestate = useSelector(state=>state.newscat)
 const [categorie,setCategorie]=useState()
+const [topNews,setTopNews]=useState()
   const tabData = {
     Popular: [
       {
@@ -84,30 +90,30 @@ const [categorie,setCategorie]=useState()
     ],
   };
 
-  const tags = [
-    { name: "All", href: "/news" },
-    { name: "Books", href: "/news/books" },
-    { name: "Environment", href: "/news/environment" },
-    { name: "Health", href: "/news/health" },
-    { name: "Bharat", href: "/news/bharat" },
-    { name: "History", href: "/news/history" },
-    { name: "Politics", href: "/news/politics" },
-    { name: "Economy", href: "/news/economy" },
-    { name: "Society", href: "/news/society" },
-    { name: "Science & Technology", href: "/news/science-technology" },
-    { name: "Policy", href: "/news/policy" },
-    { name: "World", href: "/news/world" },
-    { name: "News & Opinion", href: "/news/news-opinion" },
-    { name: "IKS", href: "/news/iks" },
-    { name: "Defence", href: "/news/defence" },
-    { name: "Panjab", href: "/news/panjab" },
-    { name: "Special Report", href: "/news/special-report" },
-  ];
+      const fetchdata=async()=>{
+        setLoading(true)
+    const response= await axios.get(`${baseurl}/gettopviews`)
+    const data= await response.data;
+    if(data.success){
 
+setTopNews(data?.news)
+
+
+    }
+            setLoading(false)
+
+    
+
+}
+
+useEffect(()=>{
+  fetchdata()
+},[])
 
 
   const [activeTab, setActiveTab] = useState("Popular");
  useEffect(()=>{
+
 if(categoriestate.isLoading){
 setLoading(true)
 }
@@ -117,6 +123,13 @@ setCategorie(categoriestate?.info?.categories)
 
 
     },[categoriestate])
+    const setDate=(ndate)=>{
+  const date = new Date(ndate);
+
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = date.toLocaleDateString('en-US', options);
+return formattedDate
+}
   return (
     <>
 
@@ -155,11 +168,15 @@ setCategorie(categoriestate?.info?.categories)
           </ul>
         </div>
 
-        {/* Tabs Widget */}
+      
+
+
+
+      
         <div className="bg-white  shadow">
           {/* Tab Buttons */}
           <div className="flex ">
-            {Object.keys(tabData).map((tab) => (
+            {["Popular","Recent"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -173,33 +190,40 @@ setCategorie(categoriestate?.info?.categories)
           </div>
 
           <ul className="pt-3 px-4">
-            {tabData[activeTab].map((item, idx) => (
-              <li
-                key={idx}
-                className="flex mb-3 py-2 gap-4 items-start group hover:bg-gray-50 transition"
-              >
-                <a href="" className="flex-shrink-0">
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    width={80}
-                    height={80}
-                    className=" object-cover"
-                  />
-                </a>
-                <div className="flex-1">
-                  <h2 className="text-base font-semibold leading-tight">
-                    <a href="/">{item.title}</a>
-                  </h2>
-                  <span className="text-base  mt-1">
-                    by{" "}
-                    <a href="" className="underline hover:text-blue-600">
-                      {item.author}
-                    </a>
-                  </span>
-                </div>
-              </li>
-            ))}
+            {activeTab ==="Recent"&&
+             <LatestNews />
+            }
+            {activeTab ==="Popular" &&
+               <div className="space-y-5">
+                          {topNews?.slice(0,5).map((item) => (
+                                    <div key={item.id} className="flex gap-4">
+                                        <Link href={`/news/${item.slug || '#'}`} className="shrink-0">
+
+                                            <Image
+                                                src={`${imageurl}/${item?.image}`}
+                                                alt={item?.title}
+                                                width={100}
+                                                height={70}
+                                                className="object-fill w-24 h-20"
+                                            />
+                                        </Link>
+                                        <div>
+                                            <div className="text-xs  mb-1 flex items-center gap-1">
+                                                {/* <FaCalendar className="" /> */}
+                                              {setDate(item?.created_at)}
+                                            </div>
+                                            <h3 className="text-base font-semibold hover:text-blue-600 transition">
+                                                <Link href={`/news/${item?.slug || '#'}`}>
+                                                    {item?.title.split(' ').slice(0, 8).join(' ')}{item?.title.split(' ').length > 8 ? '...' : ''}
+                                                </Link>
+                                            </h3>
+
+                                        </div>
+                                    </div>
+                                ))} 
+                            </div>
+
+            }
           </ul>
         </div>
 

@@ -3,60 +3,54 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaAngleRight, FaCalendar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaAngleRight, FaCalendar } from 'react-icons/fa';
 
-import { newsData } from './NewsData';
+
+import LatestNews from './LatestNews';
+import axios from 'axios';
+import { baseurl, imageurl } from './reduxstore/utils';
+
+
 
 const categories = ['All', 'Books', 'Environment', 'Health', 'Bharat (National)', 'History'];
-const ITEMS_PER_PAGE = 3; // Number of news items per page
+const ITEMS_PER_PAGE = 3; 
 
-// Get the latest 5 news items sorted by date descending
-const latestReviews = [...newsData]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 3);
+
 
 
 export default function MoreNewsSection() {
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const [loading, setLoading] = useState(true);
-    const [filteredNews, setFilteredNews] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    
+  
 
-    const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const currentNews = filteredNews.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const [news, setNews] = useState([]);
+  const [meta, setMeta] = useState(null);
+ 
+  const [loading, setLoading] = useState(false);
+const [pagenum,setPageNum]=useState(1)
+  
+const fetchdata=async(catag)=>{
+    setLoading(true)
+    const  response= await axios.get(`${baseurl}/getnewspaginated?data=${catag}&page=${pagenum}`)
+    const data= response.data;
+     setNews(data.news.data);     
+    setMeta(data.news);         
+    setLoading(false);
+}
 
-    useEffect(() => {
-        setLoading(true);
-        setCurrentPage(1); // Reset to page 1 when category changes
-        const timeout = setTimeout(() => {
-            const filtered =
-                selectedCategory !== "All"
-                    ? newsData.filter((item) => item.category === selectedCategory)
-                    : newsData;
+useEffect(()=>{
+fetchdata(selectedCategory)
+},[])
+useEffect(()=>{
+fetchdata(selectedCategory)
+},[pagenum,selectedCategory])
 
-            setFilteredNews(filtered);
-            setLoading(false);
-        }, 500);
 
-        return () => clearTimeout(timeout);
-    }, [selectedCategory]);
 
-    const getPageNumbersToShow = () => {
-        const maxPagesToShow = 3;
-        let startPage = Math.max(currentPage - Math.floor(maxPagesToShow / 2), 1);
-        let endPage = startPage + maxPagesToShow - 1;
+    
+ 
 
-        if (endPage > totalPages) {
-            endPage = totalPages;
-            startPage = Math.max(endPage - maxPagesToShow + 1, 1);
-        }
-
-        return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-    };
-
-    const pageNumbersToShow = getPageNumbersToShow();
-
+ 
 
 
     const renderSkeleton = () =>
@@ -71,6 +65,23 @@ export default function MoreNewsSection() {
                 </div>
             </div>
         ));
+        
+
+const handlePageClick = (url) => {
+    if (!url) return;
+    const urlObj = new URL(url);
+    const pageParam = urlObj.searchParams.get("page");
+    setPageNum(pageParam)
+  };
+const setDate=(ndate)=>{
+  const date = new Date(ndate);
+
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = date.toLocaleDateString('en-US', options);
+return formattedDate
+}
+
+
 
     return (
         <section className="py-10 lg:py-20 px-5 lg:px-24">
@@ -101,8 +112,8 @@ export default function MoreNewsSection() {
                         <div className="space-y-8">
                             {loading ? (
                                 renderSkeleton()
-                            ) : currentNews.length > 0 ? (
-                                currentNews.map((item) => (
+                            ) : news?.length > 0 ? (
+                                news?.map((item) => (
                                     <div
                                         key={item.id}
                                         className="bg-white h-[210px] shadow-md overflow-hidden flex flex-col sm:flex-row"
@@ -110,32 +121,32 @@ export default function MoreNewsSection() {
                                         <div className="sm:w-2/5 relative">
                                             <Link href={`/news/${item.slug || '#'}`} className="block group">
                                                 <Image
-                                                    src={item.images || "/images/unavailable.webp"}
-                                                    alt={item.title}
+                                                    src={ `${imageurl}/${item.image}` || "/images/unavailable.webp"}
+                                                    alt={item?.title}
                                                     width={400}
                                                     height={450}
                                                     className="w-full h-[210px] object-fill group-hover:opacity-80 transition"
                                                 />
                                                 <div className="absolute top-2 left-2 bg-black text-white px-3 py-1 text-xs font-semibold rounded">
-                                                    {item.category}
+                                                    {item?.news_type}
                                                 </div>
                                             </Link>
                                         </div>
                                         <div className="sm:w-3/5 p-5">
                                             <div className="text-sm  mb-2 flex justify-between items-center">
-                                                <Link href="/author-profile/dr-rohil-oberoi">  <span>by <span className="font-medium text-black">{item.author}</span></span></Link>
+                                                <Link href="/author-profile/dr-rohil-oberoi">  <span>by <span className="font-medium text-black">{item?.editor}</span></span></Link>
                                                 <span className="flex items-center">
                                                     <FaCalendar className="mr-1" />
-                                                    {item.date}
+                                                    {setDate(item?.created_at)} 
                                                 </span>
                                             </div>
                                             <h3 className="text-lg font-semibold mb-2">
                                                 <Link href={`/news/${item.slug || '#'}`} className="hover:text-blue-600">
-                                                    {item.title}
+                                                    {item?.title}
                                                 </Link>
                                             </h3>
                                             <p className="text-black text-sm">
-                                                {item.content[0].slice(0, 150)}...
+                                                {item?.title[0].slice(0, 150)}...
                                             </p>
                                         </div>
                                     </div>
@@ -147,39 +158,30 @@ export default function MoreNewsSection() {
                             )}
 
 
-                            {/* Pagination */}
-                            {totalPages > 1 && (
-                                <div className="flex justify-center gap-2 mt-6 flex-wrap">
-                                    <button
-                                        onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                                        disabled={currentPage === 1}
-                                        className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-                                    >
-                                        <FaChevronLeft />
-                                    </button>
+                           
+                          
 
-                                    {pageNumbersToShow.map((page) => (
-                                        <button
-                                            key={page}
-                                            onClick={() => setCurrentPage(page)}
-                                            className={`px-3 py-1 ${currentPage === page
-                                                ? 'bg-black text-white'
-                                                : 'bg-gray-100 hover:bg-gray-200'
-                                                }`}
-                                        >
-                                            {page}
-                                        </button>
-                                    ))}
+                                
+                                   
 
-                                    <button
-                                        onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                                        disabled={currentPage === totalPages}
-                                        className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-                                    >
-                                        <FaChevronRight />
-                                    </button>
-                                </div>
-                            )}
+
+                            {meta && (
+            <div className="flex justify-center mt-6 space-x-2">
+              {meta.links.map((link, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handlePageClick(link.url)}
+                  disabled={!link.url}
+                  dangerouslySetInnerHTML={{ __html: link.label }}
+                  className={`px-3 py-1 border rounded ${
+                    link.active
+                      ? 'bg-black text-white'
+                      : "bg-gray-100 hover:bg-gray-200"
+                  } ${!link.url ? "opacity-50 cursor-not-allowed" : ""}`}
+                />
+              ))}
+            </div>
+          )}
 
                         </div>
                     </div>
@@ -191,34 +193,7 @@ export default function MoreNewsSection() {
                             <h2 className="text-xl font-bold  mb-5 border-b pb-2">
                                 Latest Reviews
                             </h2>
-                            <div className="space-y-5">
-                                {latestReviews.map((item) => (
-                                    <div key={item.id} className="flex gap-4">
-                                        <Link href={`/news/${item.slug || '#'}`} className="shrink-0">
-
-                                            <Image
-                                                src={item.images || "/images/unavailable.webp"}
-                                                alt={item.title}
-                                                width={100}
-                                                height={70}
-                                                className="object-fill w-24 h-20"
-                                            />
-                                        </Link>
-                                        <div>
-                                            <div className="text-xs  mb-1 flex items-center gap-1">
-                                                <FaCalendar className="" />
-                                                {item.date}
-                                            </div>
-                                            <h3 className="text-base font-semibold hover:text-blue-600 transition">
-                                                <Link href={`/news/${item.slug || '#'}`}>
-                                                    {item.title.split(' ').slice(0, 8).join(' ')}{item.title.split(' ').length > 8 ? '...' : ''}
-                                                </Link>
-                                            </h3>
-
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                           <LatestNews  slicenumber={3}/>
                         </div>
 
                         {/* Newsletter */}

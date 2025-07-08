@@ -10,14 +10,17 @@ import { FaXTwitter } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { getNewsCategories } from "./reduxstore/slices/newsCategoriesSlice";
 import { useEffect } from "react";
+import { getlatestnews } from "./reduxstore/slices/getLetestNews";
 
 
 
 
 export default function Footer() {
 const dispatch= useDispatch();
+
 useEffect(()=>{
   dispatch(getNewsCategories())
+  dispatch(getlatestnews())
   
 },[])
 

@@ -13,7 +13,7 @@ const Editorialboard = () => {
     },
     {
       role: "Assistant Editor",
-      name: "Ms. Diku M Hazarika",
+      name: "Ms Diku M Hazarika",
       designation: "M.Phil., Research Fellow, Panjab University",
       location: "Chandigarh, India",
       image: "/images/editor/diku.webp",
