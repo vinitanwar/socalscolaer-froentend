@@ -203,13 +203,12 @@ return formattedDate
           </h1>
 
           <div className="block lg:flex gap-4 mb-6 mt-2">
-            {newsData?.editor && (
-              <a
-                href={`/author-profile/${newsData?.editor.split(" ").join("-")}`}
+            {newsData?.editor  && newsData.editor !=0 && (
+              <span
                 className=" font-semibold hover:underline flex gap-1"
               >
                 <span className="hidden lg:block">By</span> {newsData?.editor}
-              </a>
+              </span>
             )}
 
             <ul className="flex flex-wrap gap-4 text-sm text-justify  ">
@@ -263,7 +262,7 @@ return formattedDate
 
 
 
- {newsData?.editor != 0  && <AuthorCompo slug={newsData?.editor.split(" ").join("-")}  other={true}/> }
+ {newsData?.editor  && newsData.editor !=0  && <AuthorCompo slug={newsData?.editor.split(" ").join("-")}  other={true}/> }
 
         
 <NewsContent article={newsData} />
