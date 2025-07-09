@@ -91,7 +91,7 @@ return formattedDate
                                 <div className="absolute bottom-0 left-0 p-4 bg-black bg-opacity-50 text-white w-full">
                                     <div className='flex gap-2 items-center mb-2 text-xs' style={{color:topNews?.color|| "green"}}>
                                     <div className="  text-green-400" style={{color:topNews?.color|| "green"}}>{topNews?.news_type}</div>
-                                    <div className='flex  items-center'><GrView />{topNews?.views}</div>
+                                   
                                     </div>
                                     <ul className="text-xs mb-2 space-x-2 flex">
                                         <li><span>by</span> <span className="underline">{topNews?.editor}</span></li>
@@ -137,7 +137,7 @@ return formattedDate
                             </div>
                         ))}
 
-                        {/* ✅ Pagination (Mobile Only) */}
+                       
                         {isMobile && totalPages > 1 && (
                             <div className="col-span-full mt-6 flex justify-center space-x-2">
                                 {Array.from({ length: totalPages }, (_, index) => (

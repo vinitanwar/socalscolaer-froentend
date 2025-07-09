@@ -209,24 +209,15 @@ else{
             <ul className="flex flex-wrap gap-4 text-sm text-justify  ">
               
 
- <li className="flex items-center gap-1">
+ {/* <li className="flex items-center gap-1">
                 <FaEye /> {newsData?.views}
-              </li>
-              {/* {newsData?.comments && (
-                <>
-                  <li className="flex items-center gap-1">
-                    <FaThumbsUp /> {newsData?.comments}
-                  </li>
-                  <li className="flex items-center gap-1">
-                    <FaComments /> {newsData?.comments}
-                  </li>
-                </>
-              )} */}
-              {newsData?.views && (
+              </li> */}
+             
+              {/* {newsData?.views && (
                 <li className="flex items-center gap-1">
                   Reading Time : {newsData?.views} mins read
                 </li>
-              )}
+              )} */}
             </ul>
           </div>
           <ul>
@@ -243,7 +234,7 @@ else{
                 index === 0
                   ? "first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:leading-none first-letter:pr-4 first-letter:uppercase"
                   : ""
-              }`}></p>
+              } text-justify `}></p>
 </li>
   )
 
