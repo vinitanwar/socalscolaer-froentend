@@ -131,7 +131,7 @@ const formattedDate = date.toLocaleDateString('en-US', options);
 return formattedDate
 }
   return (
-    <>
+    <>  
 
       <div className="sticky top-10">
         <div className=" py-6  mb-5">

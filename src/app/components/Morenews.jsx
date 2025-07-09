@@ -123,10 +123,12 @@ return formattedDate
                                                 <Image
                                                     src={ `${imageurl}/${item.image}` || "/images/unavailable.webp"}
                                                     alt={item?.title}
-                                                    width={400}
+                                                width={400}
+       
+       
                                                     height={450}
                                                     className="w-full h-[210px] object-fill group-hover:opacity-80 transition"
-                                                />
+                                                />                                  
                                                 <div className="absolute top-2 left-2 bg-black text-white px-3 py-1 text-xs font-semibold rounded">
                                                     {item?.news_type}
                                                 </div>
@@ -134,7 +136,7 @@ return formattedDate
                                         </div>
                                         <div className="sm:w-3/5 p-5">
                                             <div className="text-sm  mb-2 flex justify-between items-center">
-                                                <Link href="/author-profile/dr-rohil-oberoi">  <span>by <span className="font-medium text-black">{item?.editor}</span></span></Link>
+                                                <span >  <span>by <span className="font-medium text-black">{item?.editor}</span></span></span>
                                                 <span className="flex items-center">
                                                     <FaCalendar className="mr-1" />
                                                     {setDate(item?.created_at)} 
@@ -145,8 +147,8 @@ return formattedDate
                                                     {item?.title}
                                                 </Link>
                                             </h3>
-                                            <p className="text-black text-sm">
-                                                {item?.title[0].slice(0, 150)}...
+                                            <p className="text-black text-sm" dangerouslySetInnerHTML={{__html:`${item?.des[0].description.slice(0, 150)}...`}}>
+                                                
                                             </p>
                                         </div>
                                     </div>

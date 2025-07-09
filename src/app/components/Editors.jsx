@@ -27,7 +27,7 @@ const fetartical=async()=>{
 }
  useEffect(() => {
     fetartical()
-  }, [ ]);
+  }, []);
 
 const setDate=(ndate)=>{
   const date = new Date(ndate);
@@ -43,7 +43,7 @@ return formattedDate
                     <div className="topic-box-lg color-scampi relative red">Editor Picks</div>
 
                     {/* Navigation buttons */}
-                    <div className="absolute right-0 top-1/2 flex gap-2 transform -translate-y-1/2 z-10">
+                    <div className="absolute right-0 top-1/2 flex gap-2 transform -translate-y-1/2 z-10">  
                         <button
                             ref={prevRef}
                             className="bg-[#e53935] text-white p-2 rounded-full hover:bg-[#605ca8]"
