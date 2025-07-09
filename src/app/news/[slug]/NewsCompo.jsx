@@ -263,7 +263,7 @@ return formattedDate
 
 
 
- {newsData?.editor && <AuthorCompo slug={newsData?.editor.split(" ").join("-")}  other={true}/> }
+ {newsData?.editor != 0  && <AuthorCompo slug={newsData?.editor.split(" ").join("-")}  other={true}/> }
 
         
 <NewsContent article={newsData} />
