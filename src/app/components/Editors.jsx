@@ -8,20 +8,26 @@ import { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { newsData } from './NewsData';
 import { useSelector } from 'react-redux';
-import { imageurl } from './reduxstore/utils';
+import { baseurl, imageurl } from './reduxstore/utils';
+import axios from 'axios';
 
 export default function EditorPicksCarousel() {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
-    const topNewsState= useSelector(state=>state.topnews)
+    // const topNewsState= useSelector(state=>state.topnews)
     const [allArtical,setAllArticles]=useState()
   
-
- useEffect(() => {
-    if (!topNewsState.isLoading && topNewsState.info?.success) {
-      setAllArticles(topNewsState.info.news || []);
+const fetartical=async()=>{
+    const response= await axios.get(`${baseurl}/get-editor-artical`)
+    const data= await response.data;
+    if(data.success){
+        setAllArticles(data.news)
     }
-  }, [topNewsState]);
+
+}
+ useEffect(() => {
+    fetartical()
+  }, [ ]);
 
 const setDate=(ndate)=>{
   const date = new Date(ndate);

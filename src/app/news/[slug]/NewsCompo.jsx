@@ -165,7 +165,13 @@ else{
       </div>
     );
   }
- 
+ const setDate=(ndate)=>{
+  const date = new Date(ndate);
+
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = date.toLocaleDateString('en-US', options);
+return formattedDate
+}
 
   return (
     <>
@@ -185,7 +191,7 @@ else{
             )}
             {newsData?.image && (
               <div className="absolute top-4 left-4">
-                <span className="bg-red-600 text-white px-3 py-1 text-sm font-medium" style={{background:newsData?.color || "red"}}>
+                <span className="bg-red-600 text-white px-3 py-1 text-sm font-medium" >
                   {newsData?.news_type}
                 </span>
               </div>
@@ -209,15 +215,15 @@ else{
             <ul className="flex flex-wrap gap-4 text-sm text-justify  ">
               
 
- {/* <li className="flex items-center gap-1">
-                <FaEye /> {newsData?.views}
-              </li> */}
+ <li className="flex items-center gap-1">
+                <  FaCalendar  /> {setDate(newsData?.created_at)}
+              </li>
              
-              {/* {newsData?.views && (
+              {newsData?.readingtime && (
                 <li className="flex items-center gap-1">
-                  Reading Time : {newsData?.views} mins read
+                  Reading Time : {newsData?.readingtime} mins read
                 </li>
-              )} */}
+              )}
             </ul>
           </div>
           <ul>

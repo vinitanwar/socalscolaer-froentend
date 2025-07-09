@@ -70,7 +70,7 @@ const ContactRight = () => {
 
       {/* Contact Info */}
       <div className="bg-white p-6 shadow">
-        <h3 className="text-xl font-semibold mb-2">Let’s chat</h3>
+        {/* <h3 className="text-xl font-semibold mb-2">Let’s chat</h3> */}
         <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="flex items-center">
             <FaEnvelope className="mr-2 text-black" />

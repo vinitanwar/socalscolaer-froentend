@@ -12,7 +12,7 @@ import { baseurl, imageurl } from './reduxstore/utils';
 
 
 
-const categories = ['All', 'Books', 'Environment', 'Health', 'Bharat (National)', 'History'];
+const categories = ['All', 'Books', 'Environment', 'Health', 'Bharat', 'History'];
 const ITEMS_PER_PAGE = 3; 
 
 

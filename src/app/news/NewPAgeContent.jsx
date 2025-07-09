@@ -144,7 +144,7 @@ return formattedDate
                                                     <ul className="flex flex-wrap items-center space-x-2">
                                                         <li>
                                                             <span>by</span>{" "}
-                                                            <Link href={`/author-profile/${news.editor.split(" ").join("-")}`}>{news?.editor}</Link>
+                                                            <span>{news?.editor!=0 ?news?.editor : ""}</span>
                                                         </li>
                                                         <li className="flex items-center space-x-1">
                                                             <FaCalendar className="text-gray-400" />
@@ -155,8 +155,8 @@ return formattedDate
                                                 <h3 className="font-semibold text-2xl my-3 leading-tight">
                                                     <Link href={`/news/${news.slug}`}>{news.title}</Link>
                                                 </h3>
-                                                <p className="text-sm ">
-                                                   {  news.title.slice(0, 250)}...
+                                                <p className="text-sm " dangerouslySetInnerHTML={{__html:`${ news?.des[0].description.slice(0, 250)}...`}}>
+                                               
                                                 </p>
                                             </div>
                                         </div>
