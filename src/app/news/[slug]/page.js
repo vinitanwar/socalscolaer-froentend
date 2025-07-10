@@ -1,6 +1,6 @@
 import React from 'react'
 import NewsCompo from './NewsCompo'
-import { baseurl } from '@/app/components/reduxstore/utils'
+import { baseurl, imageurl } from '@/app/components/reduxstore/utils'
 
 export async function generateMetadata({ params }) {
   const slug = params.slug;
@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
     const response = await fetch(`${baseurl}/news/${slug}`);
     const post = await response.json();
 
-    const imageUrl = `${baseurl}/${post.image}`;
+    const imageUrl = `${imageurl}/${post.image}`;
 
     return {
       title: post.title,
