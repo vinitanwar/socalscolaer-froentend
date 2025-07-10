@@ -17,11 +17,11 @@ export default function RootLayout({ children }) {
         />
         <meta
           property="og:image"
-          content="https://https://www.social-scholars.com//images/news-image.webp"
+          content="https://www.social-scholars.com/news-image.webp"
         />
         <meta
           property="og:url"
-          content="https://https://www.social-scholars.com//news/article-slug"
+          content="https://www.social-scholars.com/article-slug"
         />
       </head>
       <body>

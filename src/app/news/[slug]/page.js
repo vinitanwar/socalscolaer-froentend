@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
     const response = await fetch(`${baseurl}/news/${slug}`);
     const post = await response.json();
 
-    const imageUrl = `${imageurl}/${post.image}`;
+    const imageUrl = `${post.image}`;
 
     return {
       title: post.title,

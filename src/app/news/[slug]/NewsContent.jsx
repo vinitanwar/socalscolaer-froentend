@@ -16,7 +16,7 @@ console.log(article.image,"sdkfdsj")
     setCurrentUrl(window.location.href);
   }, []);
 
-  const baseURL = "https://www.social-scholars.com/";
+
   const utm = "?utm_source=social&utm_medium=share&utm_campaign=news_article";
   const shareUrl = `${currentUrl}${utm}`;
 
@@ -24,9 +24,7 @@ console.log(article.image,"sdkfdsj")
   const description = encodeURIComponent(
     article.description || article.content?.[0]?.slice(0, 100) || ""
   );
-  const imageUrl = article.image?.startsWith("http")
-    ? article.image
-    : `${baseURL}${article.image}`;
+  const imageUrl =article.image;
 const url = encodeURIComponent(window.location.href);
   const socialLinks = [
     {
