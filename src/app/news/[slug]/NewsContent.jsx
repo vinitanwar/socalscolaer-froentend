@@ -11,7 +11,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function NewsContent({ article }) {
   const [currentUrl, setCurrentUrl] = useState("");
-
+console.log(article.image,"sdkfdsj")
   useEffect(() => {
     setCurrentUrl(window.location.href);
   }, []);
@@ -27,46 +27,36 @@ export default function NewsContent({ article }) {
   const imageUrl = article.image?.startsWith("http")
     ? article.image
     : `${baseURL}${article.image}`;
-
+const url = encodeURIComponent(window.location.href);
   const socialLinks = [
     {
       name: "Facebook",
       icon: <FaFacebookF />,
-      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        shareUrl
-      )}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
       className: "text-blue-600 hover:bg-blue-600",
     },
     {
       name: "Twitter",
       icon: <FaXTwitter />,
-      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-        shareUrl
-      )}&text=${title}`,
+      href: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
       className: "text-black hover:bg-black",
     },
     {
       name: "WhatsApp",
       icon: <FaWhatsapp />,
-      href: `https://api.whatsapp.com/send?text=${title}%20${encodeURIComponent(
-        shareUrl
-      )}`,
+      href: `https://api.whatsapp.com/send?text=${title}%20${url}`,
       className: "text-green-500 hover:bg-green-500",
     },
     {
       name: "Pinterest",
       icon: <FaPinterestP />,
-      href: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(
-        shareUrl
-      )}&media=${encodeURIComponent(imageUrl)}&description=${description}`,
+      href: `https://pinterest.com/pin/create/button/?url=${url}&media=${encodeURIComponent(imageUrl)}&description=${description}`,
       className: "text-red-500 hover:bg-red-500",
     },
     {
       name: "LinkedIn",
       icon: <FaLinkedinIn />,
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-        shareUrl
-      )}`,
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
       className: "text-blue-700 hover:bg-blue-700",
     },
   ];

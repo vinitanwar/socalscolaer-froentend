@@ -69,7 +69,7 @@ import CommentSection from "@/app/components/CommentSection";
 // }
 
 export default function NewsDetailPage({ slug }) {
-
+                                  
 const [newsData,setNewsData]=useState();
 const [loading,setLoading]=useState(true);
 
