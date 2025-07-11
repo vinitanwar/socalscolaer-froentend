@@ -22,51 +22,60 @@ import { baseurl, imageurl } from "@/app/components/reduxstore/utils";
 import AuthorCompo from "@/app/author-profile/[slug]/AuthorCompo";
 import CommentSection from "@/app/components/CommentSection";
 
-// export async function generateMetadata({ slug }) {
+export async function generateMetadata( {params:{slug}}) {
  
 
-//   const baseUrl =
-//     process.env.NEXT_PUBLIC_SITE_URL || "https://www.social-scholars.com/";
-//   const ogImage = article.images?.startsWith("http")
-//     ? article.images
-//     : `${baseUrl}${article.images}`;
+  // const baseUrl =
+  //   process.env.NEXT_PUBLIC_SITE_URL || "https://www.social-scholars.com/";
+  // const ogImage = article.images?.startsWith("http")
+  //   ? article.images
+  //   : `${baseUrl}${article.images}`;
+  const response = await axios.get(`${baseurl}/news/${slug}`);
+ const data= await response.data;
+ if(data.success){
+const article= await data.news;
+const ogImage= `${imageurl}/${article.image}`
+  
+  const title = article.title;
+  const description = "done";
 
-//   const title = article.title;
-//   const description =
-//     article.description || article.content?.[0]?.slice(0, 150) || "";
-//   const fullUrl = `${baseUrl}/news/${article.slug}`;
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: fullUrl,
+      type: "article",
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              width: 1200,
+              height: 630,
+              alt: title,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : [],
+    },
+  };
+ }
 
-//   return {
-//     title,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//       url: fullUrl,
-//       type: "article",
-//       images: ogImage
-//         ? [
-//             {
-//               url: ogImage,
-//               width: 1200,
-//               height: 630,
-//               alt: title,
-//             },
-//           ]
-//         : [],
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title,
-//       description,
-//       images: ogImage ? [ogImage] : [],
-//     },
-//   };
-// }
+
+
+
+}
 
 // export async function generateStaticParams() {
 //   return newsData.map((item) => ({ slug: item.slug }));
 // }
+
 
 export default function NewsDetailPage({ slug }) {
                                   
