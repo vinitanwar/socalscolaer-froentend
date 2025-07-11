@@ -7,11 +7,11 @@ export default function page() {
     <>
       <Banner title="Privacy Policy" />
 
-      <div className="py-16">
+      <div className="py-16 px-5">
         <div className="container mx-auto ">
           <div className="flex justify-center">
             <div className="w-full lg:w-10/12">
-              <div className="space-y-12">
+              <div className="space-y-12 text-justify">
                 <div className="space-y-4">
                   <h2 className="text-2xl font-semibold ">
                     Who We Are

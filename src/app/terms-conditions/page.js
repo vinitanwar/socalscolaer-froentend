@@ -8,16 +8,16 @@ export default function page() {
       <Banner title="Terms & conditions" />
 
       <div className="py-16">
-        <div className="container mx-auto ">
+        <div className="container mx-auto px-5">
           <div className="flex justify-center">
             <div className="w-full lg:w-10/12">
-              <div className="space-y-12">
+              <div className="space-y-12 text-justify">
                 {/* Section: Limitation Of Liability */}
-                <section className="space-y-4">
+                <section className="space-y-4 text-justify">
                   <h2 className="text-2xl font-semibold">
                     Limitation Of Liability
                   </h2>
-                  <p className="text-black">
+                  <p className="text-black ">
                     Many desktop publishing packages and web page editors use
                     Lorem Ipsum as default model text, and a search for 'lorem
                     ipsum' will uncover many websites still in use. Various
@@ -67,7 +67,7 @@ export default function page() {
                   <h2 className="text-2xl font-semibold ">
                     Intellectual Property
                   </h2>
-                  <p className="text-black">
+                  <p className="text-black text-justify">
                     Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de
                     Finibus Bonorum et Malorum" (The Extremes of Good and Evil)
                     by Cicero, written in 45 BC. This book is a treatise on the
@@ -75,7 +75,7 @@ export default function page() {
                     Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a
                     line in section 1.10.32.
                   </p>
-                  <p className="text-black">
+                  <p className="text-black text-justify">
                     The standard chunk of Lorem Ipsum used since the 1500s is
                     reproduced below for those interested. Sections 1.10.32 from
                     "de Finibus Bonorum et Malorum" by Cicero are also
@@ -89,7 +89,7 @@ export default function page() {
                   <h2 className="text-2xl font-semibold ">
                     Security And Storage
                   </h2>
-                  <p className="text-black">
+                  <p className="text-black text-justify">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
@@ -97,7 +97,7 @@ export default function page() {
                     using 'Content here, content here', making it look like
                     readable English.
                   </p>
-                  <p className="text-black">
+                  <p className="text-black text-justify">
                     Many desktop publishing packages and web editors now use
                     Lorem Ipsum as their default text—sometimes by accident,
                     sometimes on purpose (injected humour and the like).
