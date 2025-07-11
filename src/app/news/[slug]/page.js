@@ -2,27 +2,28 @@ import React from 'react'
 import NewsCompo from './NewsCompo'
 import { baseurl, imageurl } from '@/app/components/reduxstore/utils'
 
+
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
+  const slug = await params.slug;
 
   try {
     const response = await fetch(`${baseurl}/news/${slug}`);
     const post = await response.json();
 
-    const imageUrl = `${post.image}`;
+    const imageu = post.image ? `${imageurl}/${post.image}` : `${imageurl}/default.jpg`;
 
     return {
       title: post.title,
-      description: post.description || '', // fallback if description is missing
+      description: post.description || '',
 
       openGraph: {
         title: post.title,
         description: post.description || '',
         images: [
           {
-            url: imageUrl,
-            width: 800,
-            height: 600,
+            url: imageu,
+            width: 1200,
+            height: 630,
             alt: post.title,
           },
         ],
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }) {
         card: 'summary_large_image',
         title: post.title,
         description: post.description || '',
-        images: [imageUrl],
+        images: [imageu],
       },
     };
   } catch (error) {
@@ -44,7 +45,6 @@ export async function generateMetadata({ params }) {
     };
   }
 }
-
 
 
 const page = ({params:{slug}}) => {
