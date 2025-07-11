@@ -117,19 +117,7 @@ return formattedDate
                         ))}
 
                        
-                        {isMobile && totalPages > 1 && (
-                            <div className="col-span-full mt-6 flex justify-center space-x-2">
-                                {Array.from({ length: totalPages }, (_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setCurrentPage(index + 1)}
-                                        className={`px-3 py-1 border ${currentPage === index + 1 ? 'bg-black text-white' : 'bg-white text-black'}`}
-                                    >
-                                        {index + 1}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                      
                     </div>
                 </div>
 
