@@ -240,6 +240,16 @@ return formattedDate
                   ? "first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:leading-none first-letter:pr-4 first-letter:uppercase"
                   : ""
               } text-justify `}></p>
+<div className="grid   grid-cols-1  md:grid-cols-2   gap-4">
+
+
+          {item?.img?.map((imag,index2)=>{
+return <img src={`${imageurl}/${imag}`}  className=" h-full" key={index2}/>
+          })}  
+
+
+          </div>
+
 </li>
   )
 
@@ -247,28 +257,13 @@ return formattedDate
 
     </ul>      
         
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-center gap-4 my-6">
-   {newsData?.allimages?.map((img,index)=>{return(
-             <Image
-                src={`${imageurl}/${img}`}
-                alt="Image 1"
-                width={400}
-                height={250}
-                className="w-full md:w-[300px] h-[200px] object-cover rounded shadow"
-              />
-            )}) }
-</div>
-
-
-
-
  {newsData?.editor  && newsData.editor !=0  && <AuthorCompo slug={newsData?.editor.split(" ").join("-")}  other={true}/> }
 
         
 <NewsContent article={newsData} />
           <section className="bg-white py-10 ">
             <div className="max-w-4xl mx-auto">
-              <p className="text-xl mb-6">
+              <p className="text-xl mb-6 text-justify">
                 Social Scholars is an online magazine featuring premium articles
                 and posts in English and Hindi, focusing on social issues and
                 news briefs. Share your perspectives and be part of an informed

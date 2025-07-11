@@ -8,7 +8,7 @@ import Nav from "./components/Nav";
 export default function Home() {
   return (
     <>
-      <div className="bg-white shadow-sm not-[]: px-5 lg:px-24 hidden lg:block">
+      <div className="bg-white shadow-sm not-[]: px-5 lg:px-24 ">
         <div className="container mx-auto  overflow-x-auto scrollbar-hide">
           <ul className="flex space-x-4 justify-between whitespace-nowrap ">
             <Nav />
@@ -19,7 +19,7 @@ export default function Home() {
       <TopStoriesSection />
       <EditorPicksCarousel />
       <MoreNewsSection />
-      {/* <InternationalNewsSection /> */}
+      <InternationalNewsSection />
     </>
   );
 }

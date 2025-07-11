@@ -20,7 +20,7 @@ const AdvisoryBoard = () => {
             image: "/images/editor/kuldeep.webp",
         },
         {
-            name: "Ms Chitleen K Sethi",
+            name: "Ms. Chitleen K Sethi",
             designation: "Associate Editor with ThePrint.",
             location: "India",
             image: "/images/editor/Chitleen-K-Sethi.webp",

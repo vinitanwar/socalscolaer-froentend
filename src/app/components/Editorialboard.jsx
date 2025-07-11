@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 const Editorialboard = () => {
   const editorialTeam = [
@@ -13,21 +13,21 @@ const Editorialboard = () => {
     },
     {
       role: "Assistant Editor",
-      name: "Ms Diku M Hazarika",
-      designation: "M.Phil., Research Fellow, Panjab University",
+      name: "Ms. Diku M Hazarika",
+      designation: "Research Fellow, Panjab University",
       location: "Chandigarh, India",
       image: "/images/editor/diku.webp",
     },
     {
       role: "Assistant Editor",
-      name: "Mr Vishavdeep Singh",
+      name: "Mr. Vishavdeep Singh",
       designation: "",
       location: "Chandigarh, India",
       image: "/images/editor/Mr-Vishavdeep-singh.webp",
     },
     {
       role: "Manager",
-      name: "Ms Shamma Oberoi",
+      name: "Ms. Shamma Oberoi",
       designation: "Software Engineer",
       location: "Delhi, India",
       image: "/images/editor/shamma-oberoi.webp",
@@ -67,7 +67,9 @@ const Editorialboard = () => {
 
       {/* Bottom 3 Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 ">
-        {editorialTeam.slice(1).map((member, idx) => renderCard(member, idx + 1))}
+        {editorialTeam
+          .slice(1)
+          .map((member, idx) => renderCard(member, idx + 1))}
       </div>
     </>
   );

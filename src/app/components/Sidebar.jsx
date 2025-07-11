@@ -23,6 +23,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewsCategories } from "./reduxstore/slices/newsCategoriesSlice";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function SidebarMenu({ closeSidebar }) {
   const categoriestate = useSelector((state) => state.newscat);
@@ -77,7 +78,12 @@ export default function SidebarMenu({ closeSidebar }) {
                 data-aos="fade-left"
                 // data-aos-delay={index * 100}
               >
-                <div className="flex items-center justify-between">
+                <div
+                  className="flex items-center justify-between"
+                  onClick={() => {
+                    closeSidebar();
+                  }}
+                >
                   <Link href="/" className="flex items-center space-x-3">
                     <div className="bg-gray-100 rounded-full p-2 text-lg">
                       <FaHome />
@@ -93,7 +99,12 @@ export default function SidebarMenu({ closeSidebar }) {
                 onClick={() => openFullscreenSubmenu("about")}
               >
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
+                  <div
+                    className="flex items-center space-x-3"
+                    onClick={() => {
+                      closeSidebar();
+                    }}
+                  >
                     <div className="bg-gray-100 rounded-full p-2 text-lg">
                       <FaUser />
                     </div>
@@ -216,7 +227,12 @@ export default function SidebarMenu({ closeSidebar }) {
                 className="px-4 py-3 border-b last:border-b-0 cursor-pointer"
                 data-aos="fade-left"
               >
-                <div className="flex items-center justify-between">
+                <div
+                  className="flex items-center justify-between"
+                  onClick={() => {
+                    closeSidebar();
+                  }}
+                >
                   <Link
                     href="/write-for-us"
                     className="flex items-center space-x-3"
@@ -232,9 +248,13 @@ export default function SidebarMenu({ closeSidebar }) {
               <li
                 className="px-4 py-3 border-b last:border-b-0 cursor-pointer"
                 data-aos="fade-left"
-                // data-aos-delay={index * 100}
               >
-                <div className="flex items-center justify-between">
+                <div
+                  className="flex items-center justify-between"
+                  onClick={() => {
+                    closeSidebar();
+                  }}
+                >
                   <Link href="/blogs" className="flex items-center space-x-3">
                     <div className="bg-gray-100 rounded-full p-2 text-lg">
                       <FaDotCircle />
@@ -243,9 +263,20 @@ export default function SidebarMenu({ closeSidebar }) {
                   </Link>
                 </div>
               </li>
+              <li
+                onClick={() => {
+                  closeSidebar();
+                }}
+              >
+                <Link href="/donate-us">
+                  <button className="bg-black mt-5 text-white px-4 py-2 hover:text-black border hover:bg-white transition duration-200  block lg:hidden">
+                    Donate Us
+                  </button>
+                </Link>
+              </li>
             </ul>
 
-            <div className="fixed bottom-[0%] w-full lg:w-[20%]  left-0">
+            <div className="fixed bottom-[0%] w-full left-0">
               <div className="flex justify-center items-center gap-2 w-full lg:w-auto lg:gap-4 py-5 bg-white ">
                 <a
                   href="https://www.facebook.com/share/14enGshc67/"
@@ -255,11 +286,11 @@ export default function SidebarMenu({ closeSidebar }) {
                   <FaFacebookF className="text-blue-600 w-5 h-5" />
                 </a>
                 <a
-                  href="https://twitter.com/envatomarket?lang=en"
+                  href="https://x.com/?lang=en"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaTwitter className="text-sky-500 w-5 h-5" />
+                  <FaXTwitter className="text-black w-5 h-5" />
                 </a>
                 <a
                   href="https://youtube.com/@socialscholars?si=49L5HESyAsW0ty6s"

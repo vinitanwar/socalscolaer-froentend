@@ -13,33 +13,31 @@ export default function CustomeLayout({ children }) {
 
   return (
     <ReduxProvider>
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar - Fixed on the left */}
-      <div
-        className={`
-          ${isSidebarOpen ? "w-full lg:w-[20%]" : "w-0"}
-          transition-all duration-300
-          bg-white shadow-lg
-          fixed top-0 lg:top-0 left-0  z-[150] overflow-y-auto h-full  scrollbar-hide 
-        `}
-      >
-        {isSidebarOpen && <SidebarMenu closeSidebar={closeSidebar} />}
-      </div>
+      <div className="flex flex-col h-screen overflow-hidden relative">
+        {/* Sidebar - Overlay Style */}
+        <div
+          className={`fixed top-0 left-0 z-[150] h-full w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] bg-white shadow-lg overflow-y-auto transition-transform duration-300 scrollbar-hide ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <SidebarMenu closeSidebar={closeSidebar} />
+        </div>
 
-      {/* Right Content - fills remaining space */}
-      <div
-        className={`
-          ${isSidebarOpen ? "lg:ml-[20%]" : "ml-0"}
-          w-full h-full overflow-y-auto
-          transition-all duration-300
-          flex flex-col
-        `}
-      >
-        <Navbar toggleSidebar={toggleSidebar} />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {/* Overlay backdrop when sidebar is open */}
+        {/* {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-0.5 z-[100]"
+            
+          ></div>
+        )} */}
+
+        {/* Main Content */}
+        <div className="flex flex-col flex-1 h-full overflow-y-auto relative z-10">
+          <Navbar toggleSidebar={toggleSidebar} />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </div>
-    </div>
     </ReduxProvider>
   );
 }

@@ -184,7 +184,6 @@ const AuthorCompo = ({ slug, other = false }) => {
                                 {authordata?.name}
                               </h3>
                               <ul className="text-sm   space-y-1 gap-2 flex">
-                                <li>News Writer</li>
                                 <li>
                                   <span>
                                     Since:{" "}
@@ -238,62 +237,56 @@ const AuthorCompo = ({ slug, other = false }) => {
                       </span>
                     )}
 
-                    
-<div className="flex justify-end gap-3">
-                    {authordata?.links?.map((link, index) => {
-                      return (
-                        <>
-                          {
-                          link?.platform == "facebook" ? (
-                            <a
-                              href={link?.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaFacebookF className="text-blue-600 w-5 h-5" />{" "}
-                            </a>
-                          ) :
-                          link?.platform == "x" ? (
-                            <a
-                              href={link?.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaXTwitter className="text-black w-5 h-5" />
-                            </a>
-                          ) :
-                           link?.platform == "instagram" ? (
-                            <a
-                              href={link?.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaInstagram className="text-red-600 w-5 h-5" />
-                            </a>
-                          ) : 
-                          link?.platform == "whatsapp" ? (
-                            <a
-                              href={link?.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaWhatsapp className="text-green-500 w-5 h-5" />
-                            </a>
-                          ) : 
-                           link?.platform == "linkedin" ? (
-                            <a
-                              href={link?.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaLinkedinIn className="text-blue-500 w-5 h-5" />
-                            </a>
-                          ) : 
-                            ""
-                          }
-                        </>
-                      );
-                    })}
+                    <div className="flex justify-end gap-3">
+                      {authordata?.links?.map((link, index) => {
+                        return (
+                          <>
+                            {link?.platform == "facebook" ? (
+                              <a
+                                href={link?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <FaFacebookF className="text-blue-600 w-5 h-5" />{" "}
+                              </a>
+                            ) : link?.platform == "x" ? (
+                              <a
+                                href={link?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <FaXTwitter className="text-black w-5 h-5" />
+                              </a>
+                            ) : link?.platform == "instagram" ? (
+                              <a
+                                href={link?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <FaInstagram className="text-red-600 w-5 h-5" />
+                              </a>
+                            ) : link?.platform == "whatsapp" ? (
+                              <a
+                                href={link?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <FaWhatsapp className="text-green-500 w-5 h-5" />
+                              </a>
+                            ) : link?.platform == "linkedin" ? (
+                              <a
+                                href={link?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <FaLinkedinIn className="text-blue-500 w-5 h-5" />
+                              </a>
+                            ) : (
+                              ""
+                            )}
+                          </>
+                        );
+                      })}
                     </div>
                     {/* <div className="flex gap-1 lg:gap-3 text-xl ">
                   {article.author === "Dr. Rohil Oberoi" ? (
@@ -347,27 +340,24 @@ const AuthorCompo = ({ slug, other = false }) => {
                   )}
                 </div> */}
                   </div>
-                  <div className="flex gap-1">
-                  <p
-                    className="text-sm mb-2 text-justify"
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        authordata?.about_author.length >= 200
-                          ? `${authordata?.about_author.slice(0, 200)}. . .`
-                          : authordata?.about_author,
-                    }}
-
-                  >
-                    
-                  </p>
-                  {authordata?.showprofile && 
+                  <div className="block">
+                    <p
+                      className="text-sm mb-2 text-justify"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          authordata?.about_author.length >= 220
+                            ? `${authordata?.about_author.slice(0, 220)}`
+                            : authordata?.about_author,
+                      }}
+                    ></p>
+                    {authordata?.showprofile !="0" && (
                       <Link
                         href={`/author-profile/${authordata?.slug}`}
                         className="text-lg underline"
                       >
                         Read more
                       </Link>
-                    }
+                    )}
                   </div>
                 </div>
               </div>

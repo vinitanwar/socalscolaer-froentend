@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   FaFacebookF,
   FaYoutube,
@@ -7,7 +7,7 @@ import {
   FaWhatsapp,
   FaEnvelope,
 } from "react-icons/fa";
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter } from "react-icons/fa6";
 
 const socialLinks = [
   {
@@ -19,7 +19,7 @@ const socialLinks = [
   {
     icon: <FaXTwitter />,
     bgColor: "bg-black text-white",
-    url: "",
+    url: "https://x.com/?lang=en",
     label: "X",
   },
   {
@@ -30,8 +30,9 @@ const socialLinks = [
   },
   {
     icon: <FaInstagram />,
-    bgColor: "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white",
-    url: "https://www.instagram.com/yourprofile",
+    bgColor:
+      "bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white",
+    url: "https://www.instagram.com",
     label: "Instagram",
   },
   {
@@ -69,8 +70,8 @@ const ContactRight = () => {
       </div>
 
       {/* Contact Info */}
-      <div className="bg-white p-6 shadow">
-        {/* <h3 className="text-xl font-semibold mb-2">Let’s chat</h3> */}
+      {/* <div className="bg-white p-6 shadow">
+        <h3 className="text-xl font-semibold mb-2">Let’s chat</h3>
         <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="flex items-center">
             <FaEnvelope className="mr-2 text-black" />
@@ -83,7 +84,7 @@ const ContactRight = () => {
             socialscholars91@gmail.com
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

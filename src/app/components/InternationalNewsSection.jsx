@@ -1,101 +1,146 @@
-'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaCalendar, FaFacebook, FaLinkedin, FaRss } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+"use client";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
+import {  FaFacebook, FaLinkedin, FaRss } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { baseurl, imageurl } from "./reduxstore/utils";
+import { useEffect, useState } from "react";
+import {  FaCalendar, FaCalendarWeek } from 'react-icons/fa';
 
 export default function InternationalNewsSection() {
-    return (
-        <section className="bg-gray-100 py-10 lg:py-20 px-5 lg:px-24">
-            <div className="container mx-auto">
-                <div className="flex flex-col lg:flex-row gap-8">
-                    {/* Left Content */}
-                    <div className="lg:w-2/3 w-full">
+    const [topNews,setTopNews]=useState()
+     const [alltopNews,setAllTopNews]=useState()
+         const [isMobile, setIsMobile] = useState(false);
 
-                        <div className="topic-border color-scampi w-full green relative mb-8">
-                            <div className="topic-box-lg color-scampi green relative">International</div>
+  const fetchdata= async()=>{
+    const response = await axios.get(`${baseurl}/getinternational`)
+    const data= await response.data;
+if(data.success){
+setTopNews(data?.news[0])
+setAllTopNews(data?.news?.slice(1))
+}
 
-                        </div>
+  }
 
-                        <div className="flex flex-col md:flex-row gap-6 mb-6">
-                            {/* Main News */}
-                            <div className="md:w-1/2 overflow-hidden">
-                                <div className="overflow-hidden ">
-                                    <Image src="/images/69.webp" alt="news" width={600} height={400} className="w-full h-auto object-cover  hover:scale-105 transition-transform duration-300" />
-                                </div>
-                                <div className="bg-white shadow p-4 ">
-                                    <div className="text-sm  flex items-center gap-2 mb-2">
-                                        <FaCalendar />
-                                        <span>February 10, 2025</span>
-                                    </div>
-                                    <h3 className="text-lg font-semibold  hover:text-green-700 transition">
-                                        <Link href="">Erik Jones has day he won’t soon forget Denny backup at Bristol</Link>
-                                    </h3>
-                                </div>
-                            </div>
+ useEffect(() => {
+    fetchdata()
+        const checkScreen = () => setIsMobile(window.innerWidth < 640);
+        checkScreen();
+        window.addEventListener('resize', checkScreen);
+        return () => window.removeEventListener('resize', checkScreen);
+    }, []);
 
-                            {/* Other News Items */}
-                            <div className="md:w-1/2 flex flex-col gap-6">
-                                {[
-                                    { img: '/images/69.webp', date: 'February 10, 2025', link: '', title: 'Can Be Monit roade year with Program.' },
-                                    { img: '/images/69.webp', date: 'June 06, 2025', link: '', title: 'Can Be Monit roade year with Program.' },
-                                    { img: '/images/69.webp', date: 'August 22, 2025', link: '', title: 'Can Be Monit roade year with Program.' },
-                                ].map((item, idx) => (
-                                    <div key={idx} className="flex bg-white shadow-md  overflow-hidden h-[119px]">
-                                        <Link href={item.link} className="w-1/3">
-                                            <Image src={`${item.img}`} alt="news" width={150} height={100} className="w-full h-full object-cover" />
-                                        </Link>
-                                        <div className="p-4 w-2/3">
-                                            <div className="text-sm  flex items-center gap-2 mb-2">
-                                                <FaCalendar />
-                                                <span>{item.date}</span>
-                                            </div>
-                                            <h3 className="text-md font-semibold hover:text-green-700 transition">
-                                                <Link href={item.link}>{item.title}</Link>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+const setDate=(ndate)=>{
+  const date = new Date(ndate);
 
-                    {/* Right Sidebar */}
-                    <aside className="lg:w-1/3 w-full">
-                        {/* Social Media */}
-                        <div className="mb-8">
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+const formattedDate = date.toLocaleDateString('en-US', options);
+return formattedDate
+}
 
-                            <div className="topic-border color-scampi w-full black relative mb-8">
-                                <div className="topic-box-lg color-scampi relative black">Stay Connected</div>
-
-                            </div>
-                            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
-                                {[
-                                    { icon: <FaFacebook />, label: 'Fans', count: '50.2 k', className: 'bg-blue-600' },
-                                    { icon: <FaXTwitter />, label: 'Followers', count: '10.3 k', className: 'bg-sky-500' },
-                                    { icon: <FaLinkedin />, label: 'Fans', count: '25.4 k', className: 'bg-blue-800' },
-                                    { icon: <FaRss />, label: 'Subscriber', count: '20.8 k', className: 'bg-orange-500' },
-                                ].map((item, idx) => (
-                                    <li key={idx} className={`${item.className} text-white py-4 px-2  shadow`}>
-                                        <a href="#" className="flex flex-col items-center gap-1">
-                                            {item.icon}
-                                            <div className="text-lg font-semibold">{item.count}</div>
-                                            <p className="text-sm">{item.label}</p>
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Banner Ad */}
-                        <div className="text-center">
-                            <Link href="#">
-                                <Image src="/images/69.webp" alt="ad" width={350} height={200} className="mx-auto  shadow" />
-                            </Link>
-                        </div>
-                    </aside>
-                </div>
+  return (
+    <section className="bg-gray-100 py-10 lg:py-20 px-5 lg:px-24">
+      <div className="container mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Left Content */}
+          <div className="lg:w-2/3 w-full">
+            <div className="topic-border color-scampi w-full green relative mb-8">
+              <div className="topic-box-lg color-scampi green relative">
+                International
+              </div>
             </div>
-        </section>
-    );
+
+
+
+          <div className="block lg:flex gap-5">
+                    {/* ✅ Featured News */}
+                    {topNews && (
+                        <div className="w-full lg:w-5/12 mb-6 lg:mb-0">
+                            <div className="relative group overflow-hidden">
+                                <Link href={`/news/${topNews?.slug}`}>
+                                    <Image
+                                        src={`${imageurl}/${topNews.image}`}
+                                        alt={topNews?.title}
+                                        width={400}
+                                        height={400}
+                                        className="w-full h-[450px] object-cover transition-transform group-hover:scale-105"
+                                    />
+                                </Link>
+                                <div className="absolute bottom-0 left-0 p-4 bg-black bg-opacity-50 text-white w-full">
+                                    <div className='flex gap-2 items-center mb-2 text-xs' style={{color:topNews?.color|| "green"}}>
+                                    <div className="  text-green-400" style={{color:topNews?.color|| "green"}}>{topNews?.news_type}</div>
+                                   
+                                    </div>
+                                    <ul className="text-xs mb-2 space-x-2 flex">
+                                        <li><span>by</span> <span className="underline">{topNews?.editor}</span></li>
+                                        <li className="flex gap-2"><FaCalendarWeek /> {setDate(topNews?.updated_at)}</li>
+                                    </ul>
+                                    <h2 className="text-lg font-semibold">
+                                        <Link href={`/news/${topNews?.slug}`}>{topNews?.title}</Link>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ✅ Grid Items */}
+                    <div className="w-full lg:w-7/12 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-4">
+                        {alltopNews?.map((item) => (
+                            <div key={item.id} className="flex bg-white h-max shadow-md p-2 gap-4">
+                                <div className='w-[30%]'>
+
+                                    <Link href={`/news/${item?.slug}`}>
+                                        <Image
+                                            src={`${imageurl}/${item.image}`}
+                                            alt={item?.title}
+                                            width={120}
+                                            height={80}
+                                            className="object-fill w-28 h-20"
+                                        />
+                                    </Link>
+
+                                </div>
+                                <div className='w-[70%]'>
+                                    <ul className="text-xs mb-1">
+                                        <li className='flex gap-2 items-center'><FaCalendar /> {setDate(item.updated_at)} </li>
+                                    </ul>
+                                    <h3 className="font-semibold text-base">
+                                        <Link href={`/news/${item?.slug}`}>
+                                            {item?.title.split(" ").slice(0, 6).join(" ")}
+                                            {item?.title.split(" ").length > 8 && '...'}
+                                        </Link>
+                                    </h3>
+
+                                </div>
+                            </div>
+                        ))}
+
+                       
+                        {isMobile && totalPages > 1 && (
+                            <div className="col-span-full mt-6 flex justify-center space-x-2">
+                                {Array.from({ length: totalPages }, (_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentPage(index + 1)}
+                                        className={`px-3 py-1 border ${currentPage === index + 1 ? 'bg-black text-white' : 'bg-white text-black'}`}
+                                    >
+                                        {index + 1}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+
+
+
+          </div>
+
+          
+        </div>
+      </div>
+    </section>
+  );
 }
