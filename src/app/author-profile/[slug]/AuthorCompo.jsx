@@ -26,8 +26,9 @@ const AuthorCompo = ({ slug, other = false }) => {
 
     if (data.success) {
       setAuthorData(data?.author);
-      setLoading(false);
+     
     }
+     setLoading(false);
   };
 
   useEffect(() => {
