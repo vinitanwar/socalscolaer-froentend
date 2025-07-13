@@ -54,7 +54,7 @@ const url = encodeURIComponent(window.location.href);
     {
       name: "LinkedIn",
       icon: <FaLinkedinIn />,
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+      href: `https://www.linkedin.com/shareArticle?mini=true&url=${url}`,
       className: "text-blue-700 hover:bg-blue-700",
     },
   ];
