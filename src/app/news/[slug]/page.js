@@ -64,46 +64,46 @@ const page = async ({ params: { slug } }) => {
   });
 
   const posts = await response.json();
-  const post = posts.news;
-  console.log(post);
+  const post = await posts.news;
+ 
 
-  let imageu = `${imageurl}/${post.image}`; // Default fallback image
+  let imageu = `${imageurl}/${post.image}`; 
   let title = "News Not Found | Social Scholars";
-  let description = "Explore the latest news and articles on Social Scholars.";
+  let description = post.des[0].description.slice(0, 100);
   let keywords = "news, articles, social scholars";
 
-  try {
-    const response = await fetch(`${baseurl}/news/${slug}`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
-    });
+  // try {
+  //   const response = await fetch(`${baseurl}/news/${slug}`, {
+  //     next: { revalidate: 3600 }, // Revalidate every hour
+  //   });
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch news data");
-    }
+  //   if (!response.ok) {
+  //     throw new Error("Failed to fetch news data");
+  //   }
 
-    const posts = await response.json();
-    post = posts.news;
+  //   const posts = await response.json();
+  //   post = posts.news;
 
-    // Set dynamic values if post is available
-    if (post) {
-      title = post.title || "News Article";
-      description = truncateDescription(post.des[0].description.slice(0, 100));
-      keywords =
-        post.tags?.join(", ") ||
-        post.news_type ||
-        "news, articles, social scholars";
-      imageu =
-        post.image && post.image !== ""
-          ? `${imageurl}/${post.image}`
-          : "https://via.placeholder.com/1200x630?text=Social+Scholars";
-    }
-  } catch (error) {
-    console.error("Error fetching metadata:", error);
-  }
+  //   // Set dynamic values if post is available
+  //   if (post) {
+  //     title = post.title || "News Article";
+  //     description = truncateDescription(post.des[0].description.slice(0, 100));
+  //     keywords =
+  //       post.tags?.join(", ") ||
+  //       post.news_type ||
+  //       "news, articles, social scholars";
+  //     imageu =
+  //       post.image && post.image !== ""
+  //         ? `${imageurl}/${post.image}`
+  //         : "https://via.placeholder.com/1200x630?text=Social+Scholars";
+  //   }
+  // } catch (error) {
+  //   console.error("Error fetching metadata:", error);
+  // }
   return (
     <>
       <head>
-        <title>{title}</title>
+        <title>{post.title}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta name="robots" content="index, follow" />
