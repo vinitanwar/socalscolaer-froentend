@@ -120,6 +120,7 @@ const page = async ({ params: { slug } }) => {
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content={post ? "article" : "website"} />
         <meta property="og:image" content={imageu} />
+        <meta property="og:image:secure_url" content={imageu} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={title} />
