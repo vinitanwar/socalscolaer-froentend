@@ -22,7 +22,7 @@ console.log(article.image,"sdkfdsj")
 
   const title = encodeURIComponent(article.title);
   const description = encodeURIComponent(
-    article.description || article.des?.[0]?.slice(0, 100) || ""
+    article.description || article.des?.[0]?.description.slice(0, 100) || ""
   );
   const imageUrl =article.image;
 const url = encodeURIComponent(window.location.href);

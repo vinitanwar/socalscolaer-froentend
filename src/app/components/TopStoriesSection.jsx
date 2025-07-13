@@ -94,7 +94,7 @@ return formattedDate
                                    
                                     </div>
                                     <ul className="text-xs mb-2 space-x-2 flex">
-                                        <li><span>by</span> <span className="underline">{topNews?.editor}</span></li>
+                                        <li><span>by</span> <span className="underline">{topNews?.editor=="0"?"":topNews?.editor}</span></li>
                                         <li className="flex gap-2"><FaCalendarWeek /> {setDate(topNews?.updated_at)}</li>
                                     </ul>
                                     <h2 className="text-lg font-semibold">

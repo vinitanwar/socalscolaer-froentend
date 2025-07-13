@@ -136,7 +136,10 @@ return formattedDate
                                         </div>
                                         <div className="sm:w-3/5 p-5">
                                             <div className="text-sm  mb-2 flex justify-between items-center">
+                                                {item?.editor=="0"?"":
                                                 <span >  <span>by <span className="font-medium text-black">{item?.editor}</span></span></span>
+                                                }
+                                                
                                                 <span className="flex items-center">
                                                     <FaCalendar className="mr-1" />
                                                     {setDate(item?.created_at)} 
