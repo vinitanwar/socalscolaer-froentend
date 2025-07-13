@@ -87,7 +87,7 @@ const page = async ({ params: { slug } }) => {
     // Set dynamic values if post is available
     if (post) {
       title = post.title || "News Article";
-      description = truncateDescription(post.des[0].description);
+      description = truncateDescription(post.des[0].description.slice(0, 100));
       keywords =
         post.tags?.join(", ") ||
         post.news_type ||
