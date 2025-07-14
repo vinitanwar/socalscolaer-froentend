@@ -345,10 +345,7 @@ const AuthorCompo = ({ slug, other = false }) => {
                     <p
                       className="text-sm mb-2 text-justify"
                       dangerouslySetInnerHTML={{
-                        __html:
-                          authordata?.about_author.length >= 220
-                            ? `${authordata?.about_author.slice(0, 220)}`
-                            : authordata?.about_author,
+                        __html: authordata?.about_author,
                       }}
                     ></p>
                     {authordata?.showprofile !="0" && (
