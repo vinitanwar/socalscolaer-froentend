@@ -11,7 +11,7 @@ export async function generateMetadata({ params: { slug } }) {
       cache: "no-store",
     });
 
-    const posts = await response.json();
+        const posts = await response.json();
     const post = posts.news;
 
     const imageu = post.image
@@ -27,7 +27,7 @@ export async function generateMetadata({ params: { slug } }) {
       openGraph: {
         title,
         description,
-        url: `https://social-scholars.com/news/${slug}`, // ✅ Use full public URL
+        url: `https://social-scholars.com/news/${slug}`,
         type: "article",
         images: [
           {

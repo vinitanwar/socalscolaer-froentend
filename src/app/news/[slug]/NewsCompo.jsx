@@ -241,7 +241,7 @@ return <img src={`${imageurl}/${imag}`}  className=" h-full" key={index2}/>
               </div>
             </div>
           </section>
-        <CommentSection />
+        <CommentSection slug={slug} />
         </div>
 
         <div className="lg:col-span-4">
