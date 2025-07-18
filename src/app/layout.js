@@ -11,7 +11,17 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth">
       <head>
         <title>Social Scholars - Scholarly Engagement</title>
-       
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content="Social Scholars" />
+        <meta
+          property="og:description"  
+          content="Social Scholars is an independent news platform dedicated to delivering insightful, well-researched, and balanced reporting on topics that shape society."
+        />
+        {/* <meta
+          property="og:image"
+          content="https://www.social-scholars.com/news-image.webp"
+        /> */}
+    
       </head>
       <body className="antialiased">
         <CustomeLayout>{children}</CustomeLayout>
