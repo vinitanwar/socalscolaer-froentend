@@ -11,50 +11,48 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function NewsContent({ article }) {
   const [currentUrl, setCurrentUrl] = useState("");
-console.log(article.image,"sdkfdsj")
+
   useEffect(() => {
     setCurrentUrl(window.location.href);
   }, []);
 
-
-  const utm = "?utm_source=social&utm_medium=share&utm_campaign=news_article";
-  const shareUrl = `${currentUrl}${utm}`;
-
+  const shareBaseUrl = `https://social-scholars.com/news/${article.slug}`;
+  const encodedUrl = encodeURIComponent(shareBaseUrl);
   const title = encodeURIComponent(article.title);
   const description = encodeURIComponent(
     article.description || article.des?.[0]?.description.slice(0, 100) || ""
   );
-  const imageUrl =article.image;
-const url = encodeURIComponent(window.location.href);
+  const imageUrl = encodeURIComponent(article.image);
+
   const socialLinks = [
     {
       name: "Facebook",
       icon: <FaFacebookF />,
-      href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
       className: "text-blue-600 hover:bg-blue-600",
     },
     {
       name: "Twitter",
       icon: <FaXTwitter />,
-      href: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+      href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${title}`,
       className: "text-black hover:bg-black",
     },
     {
       name: "WhatsApp",
       icon: <FaWhatsapp />,
-      href: `https://api.whatsapp.com/send?text=${title}%20${url}`,
+      href: `https://api.whatsapp.com/send?text=${title}%20${encodedUrl}`,
       className: "text-green-500 hover:bg-green-500",
     },
     {
       name: "Pinterest",
       icon: <FaPinterestP />,
-      href: `https://pinterest.com/pin/create/button/?url=${url}&media=${encodeURIComponent(imageUrl)}&description=${description}`,
+      href: `https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${imageUrl}&description=${description}`,
       className: "text-red-500 hover:bg-red-500",
     },
     {
       name: "LinkedIn",
       icon: <FaLinkedinIn />,
-      href: `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`,
+      href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${title}`,
       className: "text-blue-700 hover:bg-blue-700",
     },
   ];
