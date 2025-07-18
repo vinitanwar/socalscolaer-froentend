@@ -21,7 +21,10 @@ export default function RootLayout({ children }) {
           property="og:image"
           content="https://www.social-scholars.com/news-image.webp"
         /> */}
-    
+        <meta
+          property="og:url"
+          content="https://www.social-scholars.com/article-slug"
+        />
       </head>
       <body className="antialiased">
         <CustomeLayout>{children}</CustomeLayout>
