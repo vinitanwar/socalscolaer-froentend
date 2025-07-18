@@ -3,12 +3,69 @@ import React from "react";
 import NewsCompo from "./NewsCompo";
 import { baseurl, imageurl } from "@/app/components/reduxstore/utils";
 
-const truncateDescription = (desc, maxLength = 160) => {
-  if (!desc) return "";
-  return desc.length > maxLength
-    ? desc.substring(0, maxLength - 3) + "..."
-    : desc;
-};
+export async function generateMetadata({ params: { slug } }) {
+  let post = null;
+  let imageu = "https://via.placeholder.com/1200x630?text=Social+Scholars";
+  let title = "News Not Found | Social Scholars";
+  let description = "Explore the latest news and articles on Social Scholars.";
+  let keywords = "news, articles, social scholars";
+
+  try {
+    const response = await fetch(`${baseurl}/news/${slug}`, {
+      cache: "no-store",
+    });
+
+    const posts = await response.json();
+    post = posts.news;
+
+    if (post) {
+      title = post.title || title;
+      description = post.des?.[0]?.description || description;
+      keywords = post.tags?.join(", ") || post.news_type || keywords;
+      imageu =
+        post.image && post.image !== ""
+          ? `${imageurl}/${post.image}`
+          : imageu;
+    }
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+  }
+
+  return {
+    title,
+    description,
+    keywords,
+    alternates: {
+      canonical: `https://social-scholars.com/news/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://social-scholars.com/news/${slug}`,
+      siteName: "Social Scholars",
+      locale: "en_US",
+      type: post ? "article" : "website",
+      images: [
+        {
+          url: imageu,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageu],
+      site: "@YourTwitterHandle",
+      creator: post?.editor
+        ? `@${post.editor.replace(/\s+/g, "")}`
+        : undefined,
+    },
+  };
+}
 
 const page = async ({ params: { slug } }) => {
   let post = null;
