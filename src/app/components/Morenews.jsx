@@ -9,6 +9,7 @@ import { FaAngleRight, FaCalendar } from 'react-icons/fa';
 import LatestNews from './LatestNews';
 import axios from 'axios';
 import { baseurl, imageurl } from './reduxstore/utils';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -20,7 +21,7 @@ const ITEMS_PER_PAGE = 3;
 
 export default function MoreNewsSection() {
     const [selectedCategory, setSelectedCategory] = useState("All");
-    
+    const router= useRouter()
   
 
     const [news, setNews] = useState([]);
@@ -47,7 +48,10 @@ fetchdata(selectedCategory)
 
 
 
-    
+    const handelmore=()=>{
+         localStorage.setItem("newscat", "All"),
+router.push("/news")
+    }
  
 
  
@@ -102,9 +106,9 @@ return formattedDate
                                         {category}
                                     </button>
                                 ))}
-                                <Link onClick={localStorage.setItem("newscat","All")} href="/news" className="text-[#605ca8] text-lg flex items-center gap-1 hover:underline">
+                                <span onClick={handelmore}  className="text-[#605ca8] text-lg flex items-center gap-1 hover:underline">
                                     More <FaAngleRight />
-                                </Link>
+                                </span>
                             </div>
                         </div>
 
