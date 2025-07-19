@@ -101,7 +101,7 @@ useEffect(() => {
             key={"All"}
             onClick={() => {
               localStorage.setItem("newscat", "All"),
-                setSelectedCategory("All");
+                handeldata("All");
             }}
             className={`px-4 py-1 border rounded-full text-sm text-nowrap hover:bg-black hover:text-white transition ${
               selectedCategory === "All"
@@ -116,7 +116,7 @@ useEffect(() => {
               key={cat}
               onClick={() => {
                 localStorage.setItem("newscat", cat?.categories),
-                  setSelectedCategory(cat?.categories);
+                  handeldata(cat?.categories);
               }}
               className={`px-4 py-1 border rounded-full text-sm text-nowrap hover:bg-black hover:text-white transition ${
                 selectedCategory == cat?.categories
