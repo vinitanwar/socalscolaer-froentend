@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  FaFacebookF,
-  FaWhatsapp,
-  FaPinterestP,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaFacebookF, FaWhatsapp, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function NewsContent({ article }) {
@@ -43,11 +38,11 @@ export default function NewsContent({ article }) {
       href: `https://api.whatsapp.com/send?text=${title}%20${encodedUrl}`,
       className: "text-green-500 hover:bg-green-500",
     },
-    {
-      name: "Pinterest",
-      icon: <FaPinterestP />,
-      href: `https://pinterest.com/pin/create/button/?url=${encodedUrl}&media=${imageUrl}&description=${description}`,
-      className: "text-red-500 hover:bg-red-500",
+     {
+      name: "WhatsApp",
+      icon: <FaInstagram />,
+      href: `https://api.whatsapp.com/send?text=${title}%20${encodedUrl}`,
+      className: "text-red-500 hover:bg-red-600",
     },
     {
       name: "LinkedIn",

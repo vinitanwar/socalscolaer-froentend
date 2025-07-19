@@ -11,44 +11,61 @@ import { imageurl } from "../components/reduxstore/utils";
 import { getNews } from "../components/reduxstore/slices/getNewsSlices";
 
 export default function NewPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const categoriestate = useSelector((state) => state.newscat);
-  const newsstate = useSelector((state) => state.news);
-  const dispatch = useDispatch();
-  const [categorie, setCategorie] = useState();
+const [selectedCategory, setSelectedCategory] = useState("All");
+const [loading, setLoading] = useState(true);
+const [filteredNews, setFilteredNews] = useState();
 
-  const [loading, setLoading] = useState(true);
 
-  const [newfilterdata, setnewfilterData] = useState();
+const categoriesState = useSelector((state) => state.newscat);
+const newsState = useSelector((state) => state.news);
+const dispatch = useDispatch();
 
-  useEffect(() => {
-    const data = localStorage.getItem("newscat") || "All";
-    setSelectedCategory(data);
+// Initial data loading
+useEffect(() => {
+  
 
-    dispatch(getNews(data));
-  }, []);
+  const savedCategory = localStorage.getItem("newscat");
+  if(savedCategory=="All" ||savedCategory==undefined ){
+ dispatch(getNews("All"));
+  }
+  else{
+  setSelectedCategory(savedCategory);
+ dispatch(getNews(savedCategory));
 
-  useEffect(() => {
-    dispatch(getNews(selectedCategory));
-  }, [selectedCategory]);
+  }
+ 
 
-  useEffect(() => {
-    if (categoriestate.isLoading) {
-      setLoading(true);
-    } else {
-      setCategorie(categoriestate?.info?.categories);
-      setLoading(false);
-    }
-  }, [categoriestate]);
+}, [ ]);
 
-  useEffect(() => {
-    if (newsstate.isLoading) {
-      setLoading(true);
-    } else {
-      setnewfilterData(newsstate?.info?.news);
-      setLoading(false);
-    }
-  }, [newsstate]);
+
+const handeldata=(type)=>{
+  setSelectedCategory(type)
+  if (selectedCategory) {
+    dispatch(getNews(type));
+  }
+}
+
+
+// useEffect(() => {
+//       setLoading(true)
+
+
+//   setLoading(false)
+// }, [selectedCategory]);
+
+// Handle categories state updates
+useEffect(() => {
+  setLoading(categoriesState.isLoading || newsState.isLoading);
+}, [categoriesState.isLoading, newsState.isLoading]);
+
+// Update filtered news when news data changes
+useEffect(() => {
+  if (!newsState.isLoading && newsState.info) {
+    setFilteredNews(newsState.info.news);
+  }
+}, [newsState]);
+
+
   const setDate = (ndate) => {
     const date = new Date(ndate);
 
@@ -77,7 +94,7 @@ export default function NewPage() {
 
   return (
     <>
-      <Banner title="Latest News" />
+      {/* <Banner title="Latest Articles" /> */}
       <div className="container mx-auto py-10 px-5 lg:px-24">
         <div className="flex  overflow-auto gap-2 justify-start scrollbar-hide mb-8">
           <button
@@ -94,7 +111,7 @@ export default function NewPage() {
           >
             All
           </button>
-          {categorie?.map((cat) => (
+          {categoriesState?.info?.categories?.map((cat) => (
             <button
               key={cat}
               onClick={() => {
@@ -102,7 +119,7 @@ export default function NewPage() {
                   setSelectedCategory(cat?.categories);
               }}
               className={`px-4 py-1 border rounded-full text-sm text-nowrap hover:bg-black hover:text-white transition ${
-                selectedCategory === cat
+                selectedCategory == cat?.categories
                   ? "bg-black text-white"
                   : "bg-white text-black"
               }`}
@@ -117,10 +134,10 @@ export default function NewPage() {
             <div className="grid grid-cols-1 gap-12">
               {loading ? (
                 renderSkeleton()
-              ) : newfilterdata?.length === 0 ? (
+              ) : filteredNews?.length === 0 ? (
                 <p className="text-center  text-lg">No news for this</p>
               ) : (
-                newfilterdata?.map((news) => (
+                filteredNews?.map((news) => (
                   <div
                     key={news.id}
                     className="block lg:flex items-center gap-4"
@@ -156,7 +173,7 @@ export default function NewPage() {
                           </li>
                           <li className="flex items-center space-x-1">
                             <FaCalendar className="text-gray-400" />
-                            <span>{setDate(news.updated_at)}</span>
+                            <span>{setDate(news.created_at)}</span>
                           </li>
                         </ul>
                       </div>
@@ -180,8 +197,9 @@ export default function NewPage() {
           </div>
           <div className="lg:col-span-4">
             <LeftContent
-              setSelectedCategory={setSelectedCategory}
+             
               getslug={false}
+              handeldata={handeldata}
             />
           </div>
         </div>

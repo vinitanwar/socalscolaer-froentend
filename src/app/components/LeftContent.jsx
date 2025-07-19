@@ -13,7 +13,7 @@ import Link from 'next/link';
 
 // import {  FaCalendar } from 'react-icons/fa';
 
-const LeftContent = ({ setSelectedCategory, getslug = true }) => {
+const LeftContent = ({  getslug = true,handeldata=null }) => {
 
     const [loading, setLoading] = useState(true);
 
@@ -139,7 +139,7 @@ return formattedDate
           <ul className="flex flex-wrap gap-3">
             <li >
                 <p
-                  onClick={() => { localStorage.setItem("newscat", "All"), setSelectedCategory("All") }}
+                  onClick={() => { localStorage.setItem("newscat", "All"), handeldata("All") }}
                   className=" cursor-pointer inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  "
                 >
                  All
@@ -148,7 +148,7 @@ return formattedDate
             {!getslug && categorie?.map((tag, idx) => (
               <li key={idx}>
                 <p
-                  onClick={() => { localStorage.setItem("newscat", tag.categories), setSelectedCategory(tag.categories) }}
+                  onClick={() => { localStorage.setItem("newscat", tag.categories), handeldata(tag.categories) }}
                   className=" cursor-pointer inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  "
                 >
                   {tag.categories}

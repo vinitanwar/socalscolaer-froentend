@@ -97,12 +97,12 @@ export default function Hero() {
                         {" "}
                         <Link href="/author-profile/dr-rohil-oberoi">by </Link>
                         <Link href="" className="underline">
-                          Editor
+                          {firstimg?.editor==0?"":firstimg?.editor}
                         </Link>{" "}
                         &nbsp;|&nbsp;
                         <FaCalendar />{" "}
-                        {firstimg?.updated_at
-                          ? setDate(firstimg?.updated_at)
+                        {firstimg?.created_at
+                          ? setDate(firstimg?.created_at)
                           : "March 22, 2025"}{" "}
                       </span>
                     </div>

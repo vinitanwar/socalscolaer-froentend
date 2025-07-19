@@ -157,8 +157,8 @@ export default function SidebarMenu({ closeSidebar }) {
                 </div>
 
                 {openSubmenu == "topic" && (
-                  <ul className="mt-2 ml-12 space-y-1 overflow-auto scrollbar-hide  ">
-                    {catorgy?.slice(0, 6)?.map((sub, subIndex) => (
+                  <ul className="mt-2 ml-12 space-y-1 overflow-auto h-[16rem] scrollbar-hide  ">
+                    {catorgy?.map((sub, subIndex) => (
                       <li
                         key={subIndex}
                         className="px-4 py-3 border-b last:border-b-0"

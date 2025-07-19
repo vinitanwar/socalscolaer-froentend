@@ -7,7 +7,6 @@ import {
   FaGooglePlusG,
   FaInstagram,
   FaLinkedinIn,
-  FaPinterest,
   FaRss,
   FaVimeo,
   FaYoutube,
@@ -80,7 +79,6 @@ export default function Footer() {
           <FaLinkedin size={16} />
         </a>
 
-        {/* Pinterest */}
       </div>
 
       <footer className="bg-black text-base text-white px-5 lg:px-24">
@@ -164,13 +162,7 @@ export default function Footer() {
                 >
                   <FaLinkedinIn />
                 </Link>
-                <Link
-                  href="https://www.pinterest.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaPinterest />
-                </Link>
+                
               </div>
               <span className="text-lg text-center ">
                 © Copyright 2025 - Social Scholars. Designed By{" "}

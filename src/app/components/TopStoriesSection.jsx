@@ -95,7 +95,7 @@ return formattedDate
                                     </div>
                                     <ul className="text-xs mb-2 space-x-2 flex">
                                         <li><span>by</span> <span className="underline">{topNews?.editor=="0"?"":topNews?.editor}</span></li>
-                                        <li className="flex gap-2"><FaCalendarWeek /> {setDate(topNews?.updated_at)}</li>
+                                        <li className="flex gap-2"><FaCalendarWeek /> {setDate(topNews?.created_at)}</li>
                                     </ul>
                                     <h2 className="text-lg font-semibold">
                                         <Link href={`/news/${topNews?.slug}`}>{topNews?.title}</Link>
@@ -124,7 +124,7 @@ return formattedDate
                                 </div>
                                 <div className='w-[70%]'>
                                     <ul className="text-xs mb-1">
-                                        <li className='flex gap-2 items-center'><FaCalendar /> {setDate(item.updated_at)} </li>
+                                        <li className='flex gap-2 items-center'><FaCalendar /> {setDate(item.created_at)} </li>
                                     </ul>
                                     <h3 className="font-semibold text-base">
                                         <Link href={`/news/${item?.slug}`}>

@@ -184,7 +184,7 @@ const formattedDate = new Date(date).toLocaleString('en-US', {
           />
           <input
             type="text"
-            placeholder="Website"
+            placeholder="Profession"
             className="border p-2 col-span-1"
             name="website"
             onChange={changetext}

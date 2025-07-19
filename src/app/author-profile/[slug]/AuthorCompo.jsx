@@ -189,7 +189,7 @@ const AuthorCompo = ({ slug, other = false }) => {
                                   <span>
                                     Since:{" "}
                                     <span className="font-medium">
-                                      {authordata?.updated_at.split("T")[0]}
+                                      {authordata?.created_at.split("T")[0]}
                                     </span>
                                   </span>
                                 </li>

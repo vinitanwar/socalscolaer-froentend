@@ -99,7 +99,7 @@ if(loader){
                     >
                       {post?.blog_editor}
                     </Link>
-                    <span>  {  setDate(post?.updated_at) }</span>
+                    <span>  {  setDate(post?.created_at) }</span>
                     <Link
                       href="#post_comment"
                       className="flex items-center gap-1"

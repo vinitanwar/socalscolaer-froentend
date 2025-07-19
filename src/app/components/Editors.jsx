@@ -12,7 +12,7 @@ import { baseurl, imageurl } from './reduxstore/utils';
 import axios from 'axios';
 
 export default function EditorPicksCarousel() {
-    const prevRef = useRef(null);
+    const prevRef = useRef(null); 
     const nextRef = useRef(null);
     // const topNewsState= useSelector(state=>state.topnews)
     const [allArtical,setAllArticles]=useState()
