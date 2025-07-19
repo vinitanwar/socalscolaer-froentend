@@ -21,12 +21,11 @@ import axios from "axios";
 import { baseurl, imageurl } from "@/app/components/reduxstore/utils";
 import AuthorCompo from "@/app/author-profile/[slug]/AuthorCompo";
 import CommentSection from "@/app/components/CommentSection";
-import { useRouter } from "next/navigation";
 
 export default function NewsDetailPage({ slug }) {
   const [newsData, setNewsData] = useState();
   const [loading, setLoading] = useState(true);
-const router=useRouter();
+
   const fetchnews = async () => {
     setLoading(true);
     const response = await axios.get(`${baseurl}/news/${slug}`);
@@ -45,16 +44,7 @@ const router=useRouter();
   }, []);
 
 
-    useEffect(() => {
-    const handleRouteChange = () => {
-      window.scrollTo(0, 0);
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router]);
+    
 
 
   if (loading) {
