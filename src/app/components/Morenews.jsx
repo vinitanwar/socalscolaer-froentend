@@ -102,7 +102,7 @@ return formattedDate
                                         {category}
                                     </button>
                                 ))}
-                                <Link href="/news" className="text-[#605ca8] text-lg flex items-center gap-1 hover:underline">
+                                <Link onClick={localStorage.setItem("newscat","All")} href="/news" className="text-[#605ca8] text-lg flex items-center gap-1 hover:underline">
                                     More <FaAngleRight />
                                 </Link>
                             </div>
