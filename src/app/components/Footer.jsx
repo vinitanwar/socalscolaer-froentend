@@ -13,8 +13,8 @@ import {
 } from "react-icons/fa";
 import Nav from "./Nav";
 
-import {
-  FaFacebookF,
+import { 
+  FaFacebookF,     
   FaWhatsapp,
   FaLinkedin,
   FaShareAlt,
@@ -35,51 +35,7 @@ export default function Footer() {
 
   return (
     <>
-      <div className="fixed bottom-4 right-2  lg:right-4 z-50 space-y-2 flex flex-col">
-        {/* Facebook */}
-        <a
-          href="https://www.facebook.com/share/14enGshc67/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on Facebook"
-          className="bg-[#1877F2] text-white p-2 rounded-full hover:opacity-80 transition"
-        >
-          <FaFacebookF size={16} />
-        </a>
-
-        <a
-          href="https://x.com/?lang=en"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on X"
-          className="bg-black text-white p-2 rounded-full hover:opacity-80 transition"
-        >
-          <FaXTwitter size={16} />
-        </a>
-
-        {/* WhatsApp */}
-        <a
-          href="https://whatsapp.com/channel/0029Vb1DTJc2phHVqbD6H32B"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on WhatsApp"
-          className="bg-[#25D366] text-white p-2 rounded-full hover:opacity-80 transition"
-        >
-          <FaWhatsapp size={16} />
-        </a>
-
-        {/* LinkedIn */}
-        <a
-          href="https://www.linkedin.com/company/social-scholars-magazine/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on LinkedIn"
-          className="bg-[#0077B5] text-white p-2 rounded-full hover:opacity-80 transition"
-        >
-          <FaLinkedin size={16} />
-        </a>
-
-      </div>
+      
 
       <footer className="bg-black text-base text-white px-5 lg:px-24">
         <div className="container mx-auto  py-10">

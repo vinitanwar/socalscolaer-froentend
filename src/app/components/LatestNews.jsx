@@ -68,4 +68,4 @@ return formattedDate
   )
 }
 
-export default LatestNews
+ export default LatestNews

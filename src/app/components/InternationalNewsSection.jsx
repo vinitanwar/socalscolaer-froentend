@@ -16,7 +16,7 @@ export default function InternationalNewsSection() {
   const fetchdata= async()=>{
     const response = await axios.get(`${baseurl}/getinternational`)
     const data= await response.data;
-if(data.success){
+if(data.success){  
 setTopNews(data?.news[0])
 setAllTopNews(data?.news?.slice(1))
 }
@@ -48,7 +48,7 @@ return formattedDate
                 International
               </div>
             </div>
-
+ 
    
                    {/* Content */}
                    <div className="block lg:flex gap-5">
