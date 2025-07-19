@@ -102,7 +102,7 @@ export default function Hero() {
                         &nbsp;|&nbsp;
                         <FaCalendar />{" "}
                         {firstimg?.created_at
-                          ? setDate(firstimg?.created_at)
+                           ? setDate(firstimg?.created_at)
                           : "March 22, 2025"}{" "}
                       </span>
                     </div>

@@ -106,7 +106,7 @@ return formattedDate
                                         {category}
                                     </button>
                                 ))}
-                                <span onClick={handelmore}  className="text-[#605ca8] text-lg flex items-center gap-1 hover:underline">
+                                <span onClick={handelmore}  className="cursor-pointer text-[#605ca8] text-lg flex items-center gap-1 hover:underline">
                                     More <FaAngleRight />
                                 </span>
                             </div>

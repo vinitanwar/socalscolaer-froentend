@@ -9,7 +9,7 @@ const AdvisoryBoard = () => {
         "Hon'ble Vice Chancellor, Dr BR Ambedkar National Law University (DBRANLU)",
       location: "Sonipat, India",
       image: "/images/editor/devinder-singh.webp",
-    },
+    }, 
     {
       name: "Prof (Dr.) Kuldip Singh",
       designation:

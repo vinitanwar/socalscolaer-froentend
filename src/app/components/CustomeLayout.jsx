@@ -18,7 +18,7 @@ export default function CustomeLayout({ children }) {
         <div
           className={`fixed top-0 left-0 z-[150] h-full w-[80%] sm:w-[60%] md:w-[40%] lg:w-[20%] bg-white shadow-lg overflow-y-auto transition-transform duration-300 scrollbar-hide ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          }`} 
         >
           <SidebarMenu closeSidebar={closeSidebar} />
         </div>

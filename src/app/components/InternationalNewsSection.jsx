@@ -6,7 +6,7 @@ import {  FaFacebook, FaLinkedin, FaRss } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { baseurl, imageurl } from "./reduxstore/utils";
 import { useEffect, useState } from "react";
-import {  FaCalendar, FaCalendarWeek } from 'react-icons/fa';
+import {  FaCalendar, FaCalendarWeek } from 'react-icons/fa'; 
 
 export default function InternationalNewsSection() {
     const [topNews,setTopNews]=useState()
