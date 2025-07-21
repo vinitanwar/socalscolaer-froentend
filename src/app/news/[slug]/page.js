@@ -17,7 +17,7 @@ const page = async ({ params: { slug } }) => {
 
   const posts = await response.json();
   const post = posts.news;
-  console.log(post);
+
 
   let imageu = `${imageurl}/${post.image}`; // Default fallback image
   let title = "News Not Found | Social Scholars";

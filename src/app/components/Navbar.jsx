@@ -40,8 +40,8 @@ export default function Navbar({ toggleSidebar }) {
           <span className="font-semibold text-sm text-red-600">LATEST</span>
           <div className="relative overflow-hidden w-full whitespace-nowrap">
             <div className="animate-marquee">
-              {latestReviews.map((item) => (
-                <Link
+              {latestReviews.map((item,index) => (
+                <Link key={index}
                   href={`/news/${item.slug || "#"}`}
                   className="inline-block mx-6 text-sm text-white transition-all"
                 >

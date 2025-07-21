@@ -18,6 +18,7 @@ import { baseurl, imageurl } from "@/app/components/reduxstore/utils";
 const AuthorCompo = ({ slug, other = false }) => {
   const [authordata, setAuthorData] = useState();
   const [loading, setLoading] = useState(true);
+const [news,setNews]=useState()
 
   const fetchauthor = async () => {
     setLoading(true);
@@ -26,7 +27,7 @@ const AuthorCompo = ({ slug, other = false }) => {
 
     if (data.success) {
       setAuthorData(data?.author);
-     
+     setNews(data?.news)
     }
      setLoading(false);
   };
@@ -94,7 +95,7 @@ const AuthorCompo = ({ slug, other = false }) => {
           <>
             {!other && (
               <>
-                <Banner title={`${authordata?.name}`} />
+                <Banner title={`${authordata?.author_type}`} />
                 <div className="about-author-area ">
                   <div
                     className={`bg-gray-100 container mx-auto py-10 px-5 lg:px-24`}
@@ -116,7 +117,7 @@ const AuthorCompo = ({ slug, other = false }) => {
                               <span className="mx-2">/</span>
                             </li>
                             <li className="breadcrumb-item">
-                              <span className="">Editor</span>
+                              <span className="capitalize">{authordata?.author_type}</span>
                               <span className="mx-2">/</span>
                             </li>
                             <li
@@ -129,41 +130,55 @@ const AuthorCompo = ({ slug, other = false }) => {
 
                           <div className="flex justify-between  gap-6 mt-3 lg:mt-0">
                             <div className="flex justify-center items-center gap-4  ">
+                              {authordata?.links?.map((link, index) => {
+                        return (
+                          <>
+                            {link?.platform == "facebook" ? (
                               <a
-                                href="https://www.facebook.com/share/16S4TgipX5/"
+                                href={link?.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <FaFacebookF className="text-blue-600 w-5 h-5" />
+                                <FaFacebookF className="text-blue-600 w-5 h-5" />{" "}
                               </a>
+                            ) : link?.platform == "x" ? (
                               <a
-                                href="https://x.com/rohiloberoi?t=fLQ-AWDV5UybYBIbTXBmww&s=08"
+                                href={link?.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
                                 <FaXTwitter className="text-black w-5 h-5" />
                               </a>
+                            ) : link?.platform == "instagram" ? (
                               <a
-                                href="https://www.instagram.com/rohil_raghu?igsh=cHB5ZzF0M3ZndGs2"
+                                href={link?.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
                                 <FaInstagram className="text-red-600 w-5 h-5" />
                               </a>
+                            ) : link?.platform == "whatsapp" ? (
                               <a
-                                href="https://whatsapp.com/channel/0029Vb1DTJc2phHVqbD6H32B"
+                                href={link?.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
                                 <FaWhatsapp className="text-green-500 w-5 h-5" />
                               </a>
+                            ) : link?.platform == "linkedin" ? (
                               <a
-                                href="https://www.linkedin.com/in/dr-rohil-oberoi-600291198/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                href={link?.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
                                 <FaLinkedinIn className="text-blue-500 w-5 h-5" />
                               </a>
+                            ) : (
+                              ""
+                            )}
+                          </>
+                        );
+                      })}
                             </div>
                             <button className="bg-black text-white px-4 py-2 hover:text-black border hover:bg-white transition duration-200 ">
                               Download CV
@@ -208,8 +223,62 @@ const AuthorCompo = ({ slug, other = false }) => {
                     </div>
                   </div>
                 </div>
+
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8 py-8">
+  {news?.map((item, index) => (
+    <div 
+      key={index} 
+      className="relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+    >
+      {/* Image container with category badge */}
+      <div className="relative h-48 overflow-hidden">
+        <img 
+          src={`${imageurl}/${item.image}`} 
+          alt={item?.title}
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          loading={index < 3 ? "eager" : "lazy"}
+        />
+        <p className="absolute top-3 left-3 bg-black text-white px-3 py-1 text-xs font-medium rounded-full">
+          {item?.news_type}
+        </p>
+      </div>
+
+      {/* Content container */}
+      <div className="p-4">
+        <Link 
+          href={`/news/${item.slug}`}
+          className="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors duration-200 mb-2 line-clamp-2"
+        >
+          {item?.title}
+        </Link>
+        
+        <div 
+          className="text-gray-600 text-sm mb-3 line-clamp-3"
+          dangerouslySetInnerHTML={{__html: `${item.des[0].description.slice(0,100)}...`}}
+        />
+        
+        <Link 
+          href={`/news/${item.slug}`}
+          className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-200"
+        >
+          Read more
+          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    </div>
+  ))}
+</div>
               </>
             )}
+
+
+
+
+
+
+
             {other && (
               <div
                 className="border p-3 lg:p-6 mb-10 block lg:flex gap-4 w-full"
