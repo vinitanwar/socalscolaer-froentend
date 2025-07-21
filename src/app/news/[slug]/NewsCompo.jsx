@@ -39,8 +39,9 @@ export default function NewsDetailPage({ slug }) {
   };
 
   useEffect(() => {
-     window.scrollTo(0, 0);
+    
     fetchnews();
+     window.scrollTo(0, 0);
   }, []);
 
 
