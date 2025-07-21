@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
      
-      <body className="antialiased">
+      <body className="antialiased no-copy">
         <CustomeLayout>{children}</CustomeLayout>
       </body>
     </html>

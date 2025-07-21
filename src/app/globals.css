@@ -194,3 +194,9 @@ p {
 html {
   scroll-behavior: smooth !important;
 }
+
+.no-copy {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
