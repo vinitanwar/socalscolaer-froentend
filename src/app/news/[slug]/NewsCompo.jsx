@@ -198,7 +198,7 @@ export default function NewsDetailPage({ slug }) {
                     className={`${
                       index === 0
                         ? "first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:leading-none first-letter:pr-4 first-letter:uppercase"
-                        : " text-[18px]"
+                        : " text-[15px]  md:text-[18px]"
                     } text-justify  `}
                   ></p>
                   <div className="grid   grid-cols-1  md:grid-cols-2   gap-4">

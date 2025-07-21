@@ -23,7 +23,7 @@ const [news,setNews]=useState()
   const fetchauthor = async () => {
     setLoading(true);
     const response = await axios.get(`${baseurl}/getauthor/${slug}`);
-    const data = await response.data;
+    const data = await response.data; 
 
     if (data.success) {
       setAuthorData(data?.author);

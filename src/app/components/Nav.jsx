@@ -9,7 +9,7 @@ const Nav = ({ setSelectedCategory, getslug = true, isFooter = false }) => {
   const tags = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about-us" },
-    { name: "Books", href: "/news/books" },
+    { name: "Book Review", href: "/news/books" },
     { name: "Environment", href: "/news/environment" },
     { name: "Health", href: "/news/health" },
     { name: "History", href: "/news/history" },

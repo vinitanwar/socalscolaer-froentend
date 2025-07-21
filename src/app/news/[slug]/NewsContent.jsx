@@ -47,9 +47,9 @@ export default function NewsContent({ article }) {
       className: "text-green-500 hover:bg-green-500",
     },
      {
-      name: "WhatsApp",
+      name: "Instagram",
       icon: <FaInstagram />,
-      href: `https://api.whatsapp.com/send?text=${title}%20${encodedUrl}`,
+      href: `https://instagram.com/share?url=${title}%20${encodedUrl}`,
       className: "text-red-500 hover:bg-red-600",
     },
     {

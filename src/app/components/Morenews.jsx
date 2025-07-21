@@ -10,6 +10,7 @@ import LatestNews from './LatestNews';
 import axios from 'axios';
 import { baseurl, imageurl } from './reduxstore/utils';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 
 
@@ -84,8 +85,30 @@ const options = { year: 'numeric', month: 'long', day: 'numeric' };
 const formattedDate = date.toLocaleDateString('en-US', options);
 return formattedDate
 }
+const [emailinput,setEmailInput]=useState("");
 
+const handelsubs=async()=>{
+    if(!emailinput.trim()){
+return
+    }
 
+    const response= await axios.post(`${baseurl}/addsubscribe`,{email:emailinput})
+const data= response.data;
+if(data.success){
+    Swal.fire({
+  title: data.message,
+  text: "You clicked the button!",
+  icon: "success"
+});
+setEmailInput("")
+}else{
+  Swal.fire({
+  title: data.message,
+  text: "You clicked the button!",
+  icon: "error"
+});
+}
+}
 
     return (
         <section className="py-10 lg:py-20 px-5 lg:px-24">
@@ -225,8 +248,10 @@ return formattedDate
                                         type="email"
                                         placeholder="Enter your email"
                                         className="flex-grow px-4 py-2 text-black w-full outline-none"
+                                        value={emailinput}
+                                      onChange={(e)=>setEmailInput(e.target.value)}
                                     />
-                                    <button className="bg-black px-4 py-2">
+                                    <button className="bg-black px-4 py-2" onClick={handelsubs}>
                                         <FaAngleRight className="text-white" />
                                     </button>
                                 </div>

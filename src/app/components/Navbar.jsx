@@ -13,13 +13,23 @@ import {
 import SidebarMenu from "./Sidebar";
 import { newsData } from "./NewsData";
 import { FaXTwitter } from "react-icons/fa6";
-
+import { useSelector } from "react-redux";
+  
 export default function Navbar({ toggleSidebar }) {
   const latestReviews = [...newsData]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 6);
 
   const [fixed, setFixed] = useState(false);
+   const topNewsState= useSelector(state=>state.topnews)
+    const [allArtical,setAllArticles]=useState()
+  console.log(allArtical,"asmdskm")
+
+ useEffect(() => {
+    if (!topNewsState.isLoading && topNewsState.info?.success) {
+      setAllArticles(topNewsState.info.news || []);
+    }
+  }, [topNewsState]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,7 +50,7 @@ export default function Navbar({ toggleSidebar }) {
           <span className="font-semibold text-sm text-red-600">LATEST</span>
           <div className="relative overflow-hidden w-full whitespace-nowrap">
             <div className="animate-marquee">
-              {latestReviews.map((item,index) => (
+              {allArtical?.slice(0,6).map((item,index) => (
                 <Link key={index}
                   href={`/news/${item.slug || "#"}`}
                   className="inline-block mx-6 text-sm text-white transition-all"
