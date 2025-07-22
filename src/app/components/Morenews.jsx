@@ -196,24 +196,78 @@ setEmailInput("")
                                 
                                    
 
+{meta && (
+    <div className="flex flex-wrap justify-center mt-6 space-x-2">
+        {/* Always show first page */}
+        <button
+            onClick={() => handlePageClick(meta.first_page_url)}
+            disabled={pagenum == 1}
+            className={`px-3 py-1 border rounded ${
+                pagenum == 1 ? 'bg-black text-white' : 'bg-gray-100 hover:bg-gray-200'
+            }`}
+        >
+            1
+        </button>
 
-                            {meta && (
-            <div className="flex justify-center mt-6 space-x-2">
-              {meta.links.map((link, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handlePageClick(link.url)}
-                  disabled={!link.url}
-                  dangerouslySetInnerHTML={{ __html: link.label }}
-                  className={`px-3 py-1 border rounded ${
-                    link.active
-                      ? 'bg-black text-white'
-                      : "bg-gray-100 hover:bg-gray-200"
-                  } ${!link.url ? "opacity-50 cursor-not-allowed" : ""}`}
-                />
-              ))}
-            </div>
-          )}
+        {/* Show second page if not adjacent to first */}
+        {meta.current_page > 3 && (
+            <button
+                onClick={() => handlePageClick(`${baseurl}/getnewspaginated?data=${selectedCategory}&page=2`)}
+                className="px-3 py-1 border rounded bg-gray-100 hover:bg-gray-200"
+            >
+                2
+            </button>
+        )}
+
+        {/* Show ellipsis if needed */}
+        {meta.current_page > 4 && <span className="px-3 py-1">...</span>}
+
+        {/* Show pages around current page */}
+        {Array.from({ length: 5 }, (_, i) => {
+            const page = meta.current_page - 2 + i;
+            if (page > 1 && page < meta.last_page) {
+                return (
+                    <button
+                        key={page}
+                        onClick={() => handlePageClick(`${baseurl}/getnewspaginated?data=${selectedCategory}&page=${page}`)}
+                        className={`px-3 py-1 border rounded ${
+                            meta.current_page === page ? 'bg-black text-white' : 'bg-gray-100 hover:bg-gray-200'
+                        }`}
+                    >
+                        {page}
+                    </button>
+                );
+            }
+            return null;
+        })}
+
+        {/* Show ellipsis if needed */}
+        {meta.current_page < meta.last_page - 3 && <span className="px-3 py-1">...</span>}
+
+        {/* Show second last page if not adjacent to last */}
+        {meta.current_page < meta.last_page - 2 && (
+            <button
+                onClick={() => handlePageClick(`${baseurl}/getnewspaginated?data=${selectedCategory}&page=${meta.last_page - 1}`)}
+                className="px-3 py-1 border rounded bg-gray-100 hover:bg-gray-200"
+            >
+                {meta.last_page - 1}
+            </button>
+        )}
+
+        {/* Always show last page */}
+        {meta.last_page > 1 && (
+            <button
+                onClick={() => handlePageClick(meta.last_page_url)}
+                disabled={pagenum == meta.last_page}
+                className={`px-3 py-1 border rounded ${
+                    pagenum == meta.last_page ? 'bg-black text-white' : 'bg-gray-100 hover:bg-gray-200'
+                }`}
+            >
+                {meta.last_page}
+            </button>
+        )}
+    </div>
+)}
 
                         </div>
                     </div>
