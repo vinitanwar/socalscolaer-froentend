@@ -128,14 +128,14 @@ const formattedDate = new Date(date).toLocaleString('en-US', {
         <div className="flex items-center text-xl gap-2 mb-1 justify-between w-full">
           <h3 className="font-semibold text-gray-800 capitalize">{comment.name}</h3>
           {comment.website && (
-            <a 
-              href={comment?.website} 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <span
+              // href={comment?.website} 
+              // target="_blank" 
+              // rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-700"
             >
-             Visit Website
-            </a>
+             {comment.website}
+            </span>
           )}
         </div>
 

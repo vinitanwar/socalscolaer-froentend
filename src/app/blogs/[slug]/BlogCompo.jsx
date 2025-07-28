@@ -7,8 +7,10 @@ import Banner from "@/app/components/Banner";
 import LeftContent from "@/app/components/LeftContent";
 import axios from "axios";
 import { baseurl, imageurl } from "@/app/components/reduxstore/utils";
+import AuthorCompo from "@/app/author-profile/[slug]/AuthorCompo";
 const BlogCompo = ({ slug }) => {
   const [bloginfo, setBloginfo] = useState();
+  console.log(bloginfo?.blog_editor)
   const [loading, setLoading] = useState(false);
   const fetchBlog = async () => {
     setLoading(true);
@@ -76,9 +78,9 @@ const BlogCompo = ({ slug }) => {
                 className="rounded h-[250px] lg:h-[500px] w-full"
               />
 
-              <p className="text-sm text-center  mt-2">Pink Marketing, by Ma</p>
+              <p className="text-sm text-center  mt-2 uppercase">{bloginfo?.blog_cat}</p>
 
-              <div className="prose prose-lg mt-8">
+              <div className="prose prose-lg mt-8 text-justify">
                 {bloginfo?.blog_dis.map((block, index) => {
                   return (
                     <div key={index} className="my-3">
@@ -116,6 +118,14 @@ const BlogCompo = ({ slug }) => {
                 })}
               </div>
             </div>
+            <section id="editor">
+          {bloginfo?.blog_editor && bloginfo?.blog_editor != 0 && (
+            <AuthorCompo
+              slug={bloginfo?.blog_editor.split(" ").join("-")}
+              other={true}
+            />
+          )}
+          </section>
           </div>
           <div className="lg:col-span-4">
             <LeftContent />
