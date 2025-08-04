@@ -79,7 +79,7 @@ const BlogCompo = ({ slug }) => {
               />
 
               <p className="text-sm text-center  mt-2 uppercase">{bloginfo?.blog_cat}</p>
-
+    
               <div className="prose prose-lg mt-8 text-justify">
                 {bloginfo?.blog_dis.map((block, index) => {
                   return (
