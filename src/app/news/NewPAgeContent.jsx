@@ -103,7 +103,7 @@ useEffect(() => {
               localStorage.setItem("newscat", "All"),
                 handeldata("All");
             }}
-            className={`px-4 py-1 border rounded-full text-sm text-nowrap hover:bg-black hover:text-white transition ${
+            className={`px-4 py-1 border rounded-full text-sm  text-nowrap hover:bg-black hover:text-white transition ${
               selectedCategory === "All"
                 ? "bg-black text-white"
                 : "bg-white text-black"
@@ -181,7 +181,7 @@ useEffect(() => {
                         <Link href={`/news/${news.slug}`}>{news.title}</Link>
                       </h3>
                       <p
-                        className="text-sm text-justify"
+                        className="text-[16px] md:text-[17px] text-justify"
                         dangerouslySetInnerHTML={{
                           __html: `${news?.des[0].description.slice(
                             0,

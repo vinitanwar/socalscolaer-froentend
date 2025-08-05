@@ -181,7 +181,7 @@ export default function NewsDetailPage({ slug }) {
           <ul>
             {newsData?.des.map((item, index) => {
               return (
-                <li key={index} className="my-5 text-[15px]  md:text-[20px]">
+                <li key={index} className="my-5 text-[16px]  md:text-[20px]">
                   {item?.heading === "_" ? (
                     ""
                   ) : (
@@ -198,7 +198,7 @@ export default function NewsDetailPage({ slug }) {
                     className={`${
                       index === 0
                         ? "first-letter:text-7xl first-letter:font-bold first-letter:float-left first-letter:leading-none first-letter:pr-4 first-letter:uppercase"
-                        : " text-[15px]  md:text-[20px]"
+                        : " text-[16px]  md:text-[20px]"
                     } text-justify  `}
                   ></p>
                   <div className="grid   grid-cols-1  md:grid-cols-2   gap-4">

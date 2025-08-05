@@ -412,7 +412,7 @@ const [news,setNews]=useState()
                   </div>
                   <div className="block">
                     <p
-                      className="text-sm mb-2 text-justify"
+                      className="text-[16px] md:text-[20px] mb-2 text-justify"
                       dangerouslySetInnerHTML={{
                         __html: authordata?.about_author,
                       }}

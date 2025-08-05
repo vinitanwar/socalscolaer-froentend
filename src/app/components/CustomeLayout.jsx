@@ -28,7 +28,7 @@ export default function CustomeLayout({ children }) {
           <div
             className="fixed inset-0 bg-black bg-opacity-0.5 z-[100]"
             
-          ></div>
+          ></div>   
         )} */}
 
         {/* Main Content */}

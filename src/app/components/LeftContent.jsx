@@ -134,45 +134,7 @@ return formattedDate
     <>  
 
       <div className="sticky top-10">
-        <div className=" py-6  mb-5">
-          <h1 className="text-2xl font-bold mb-4 pb-2 border-b">Categories</h1>
-          <ul className="flex flex-wrap gap-3">
-            <li >
-                <p
-                  onClick={() => { localStorage.setItem("newscat", "All"), handeldata("All") }}
-                  className=" cursor-pointer inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  "
-                >
-                 All
-                </p>
-              </li>
-            {!getslug && categorie?.map((tag, idx) => (
-              <li key={idx}>
-                <p
-                  onClick={() => { localStorage.setItem("newscat", tag.categories), handeldata(tag.categories) }}
-                  className=" cursor-pointer inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  "
-                >
-                  {tag.categories}
-                </p>
-              </li>
-            ))}
-            {getslug && categorie?.map((tag, idx) => (
-              <li key={idx}>
-                <p
-                  onClick={() => { localStorage.setItem("newscat", tag.categories), route.push("/news") }}
-                  className="inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  cursor-pointer "
-                >
-                  {tag.categories}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
 
-      
-
-
-
-      
         <div className="bg-white  shadow">
           {/* Tab Buttons */}
           <div className="flex ">
@@ -226,6 +188,46 @@ return formattedDate
             }
           </ul>
         </div>
+        <div className=" py-6  mb-5">
+          <h1 className="text-2xl font-bold mb-4 pb-2 border-b">Categories</h1>
+          <ul className="flex flex-wrap gap-3">
+            <li >
+                <p
+                  onClick={() => { localStorage.setItem("newscat", "All"), handeldata("All") }}
+                  className=" cursor-pointer inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  "
+                >
+                 All
+                </p>
+              </li>
+            {!getslug && categorie?.map((tag, idx) => (
+              <li key={idx}>
+                <p
+                  onClick={() => { localStorage.setItem("newscat", tag.categories), handeldata(tag.categories) }}
+                  className=" cursor-pointer inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  "
+                >
+                  {tag.categories}
+                </p>
+              </li>
+            ))}
+            {getslug && categorie?.map((tag, idx) => (
+              <li key={idx}>
+                <p
+                  onClick={() => { localStorage.setItem("newscat", tag.categories), route.push("/news") }}
+                  className="inline-block px-3 py-1 text-base border border-[#f1f1f1] hover:bg-gray-200  cursor-pointer "
+                >
+                  {tag.categories}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      
+
+
+
+      
+        
 
 
 

@@ -74,5 +74,5 @@ const Editorialboard = () => {
     </>
   );
 };
-
+ 
 export default Editorialboard;

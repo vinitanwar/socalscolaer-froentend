@@ -21,3 +21,4 @@ export default function AuthorPage({ params:{slug} }) {
     </>
   );
 }
+ 

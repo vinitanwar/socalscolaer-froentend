@@ -22,7 +22,7 @@ export const newsData = [
     authorProfile: "",
     lindkein: "https://www.linkedin.com",
   },
-  {
+  { 
     id: 2,
     category: "Society",
     images: "/images/Picture2.webp",
