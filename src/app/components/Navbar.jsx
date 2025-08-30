@@ -86,13 +86,19 @@ export default function Navbar({ toggleSidebar }) {
             {/* Center - Logo */}
             <div className="flex justify-center pl-0 lg:pl-10">
               <Link href="/">
-                <Image
+
+
+<p className="text-2xl md:text-3xl font-black tracking-tight text-gray-900 dark:text-white">
+  dailyujala<span className="text-indigo-600">punjab</span><span className="text-indigo-600">.</span>
+
+                
+{/*                 <Image
                   src="/images/logo/social-scholar-logo.webp"
                   alt="Social Scholars"
                   width={60}
                   height={40}
                   className={`h-12 w-full ${fixed ? "lg:h-16" : "lg:h-24"}`}
-                />
+                /> */}
               </Link>
             </div>
 
