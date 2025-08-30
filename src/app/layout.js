@@ -2,7 +2,7 @@ import CustomeLayout from "./components/CustomeLayout";
 import "./globals.css";
 
 export const metadata = {
-  title: "Social Scholars - Scholarly Engagement",
+  title: "Daily Ujala Punjab.",
  
 };
 
