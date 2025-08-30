@@ -88,9 +88,12 @@ export default function Navbar({ toggleSidebar }) {
               <Link href="/">
 
 
-<p className="text-2xl md:text-3xl font-black tracking-tight text-gray-900 dark:text-white">
-  dailyujala<span className="text-indigo-600">punjab</span><span className="text-indigo-600">.</span>
+<p className="text-3xl md:text-4xl font-extrabold tracking-wider uppercase text-gray-900 dark:text-white font-serif">
+  dailyujala
+  <span className="text-indigo-600">punjab</span
+  ><span className="text-indigo-600">.</span>
 </p>
+
                 
 {/*                 <Image
                   src="/images/logo/social-scholar-logo.webp"
