@@ -90,7 +90,7 @@ export default function Navbar({ toggleSidebar }) {
 
 <p className="text-2xl md:text-3xl font-black tracking-tight text-gray-900 dark:text-white">
   dailyujala<span className="text-indigo-600">punjab</span><span className="text-indigo-600">.</span>
-
+</p>
                 
 {/*                 <Image
                   src="/images/logo/social-scholar-logo.webp"
