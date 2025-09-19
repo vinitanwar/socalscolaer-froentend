@@ -186,7 +186,7 @@ export default function NewsDetailPage({ slug }) {
                     ""
                   ) : (
                     <p
-                      className="font-bold py-2 text-2xl capitalize"
+                      className="font-bold py-2 text-lg md:text-2xl capitalize"
                       style={{ color: item?.headingColor || "fff" }}
                     >
                       {item?.heading}
