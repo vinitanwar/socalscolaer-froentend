@@ -10,6 +10,7 @@ import LatestNews from './LatestNews';
 import axios from 'axios';
 import { baseurl, imageurl } from './reduxstore/utils';
 import Link from 'next/link';
+import AdBanner from './AdBanner';
 
 // import {  FaCalendar } from 'react-icons/fa';
 
@@ -188,6 +189,10 @@ return formattedDate
             }
           </ul>
         </div>
+
+                              <AdBanner slot="9508679847" />
+
+
         <div className=" py-6  mb-5">
           <h1 className="text-2xl font-bold mb-4 pb-2 border-b">Categories</h1>
           <ul className="flex flex-wrap gap-3">

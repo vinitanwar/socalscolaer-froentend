@@ -11,6 +11,7 @@ import axios from 'axios';
 import { baseurl, imageurl } from './reduxstore/utils';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
+import AdBanner from './AdBanner';
 
 
 
@@ -281,6 +282,8 @@ setEmailInput("")
                             </h2>
                            <LatestNews  slicenumber={3}/>
                         </div>
+                              <AdBanner slot="9508679847" />
+                        
 
                         {/* Newsletter */}
                         <div className="bg-white shadow-md p-6 mt-4">

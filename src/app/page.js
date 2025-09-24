@@ -5,6 +5,7 @@ import MoreNewsSection from "./components/Morenews";
 import InternationalNewsSection from "./components/InternationalNewsSection";
 import Nav from "./components/Nav";
 import Script from "next/script";
+import AdBanner from "./components/AdBanner";
 
 export default function Home() {
   return (
@@ -19,55 +20,38 @@ export default function Home() {
 
       <Hero />
 
-      {/* Google AdSense Script */}
-      // <Script
-      //   async
-      //   strategy="afterInteractive"
-      //   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2655358665967568"
-      //   crossOrigin="anonymous"
-      // />
+      
 
-      {/* Ad Banner */}
-      // <div
-      //   className="my-4"
-      //   dangerouslySetInnerHTML={{
-      //     __html: `
-      //       <ins class="adsbygoogle"
-      //            style="display:block"
-      //            data-ad-client="ca-pub-2655358665967568"
-      //            data-ad-slot="6977336533"
-      //            data-ad-format="auto"
-      //            data-full-width-responsive="true"></ins>
-      //       <script>
-      //            (adsbygoogle = window.adsbygoogle || []).push({});
-      //       </script>
-      //     `,
-      //   }}
-      // />
+      <AdBanner slot="6977336533" />
 
       <TopStoriesSection />
+            <AdBanner slot="6977336533" />
+
       <EditorPicksCarousel />
 
       {/* Another Ad Banner */}
-      // <div
-      //   className="my-4"
-      //   dangerouslySetInnerHTML={{
-      //     __html: `
-      //       <ins class="adsbygoogle"
-      //            style="display:block"
-      //            data-ad-client="ca-pub-2655358665967568"
-      //            data-ad-slot="6977336533"
-      //            data-ad-format="auto"
-      //            data-full-width-responsive="true"></ins>
-      //       <script>
-      //            (adsbygoogle = window.adsbygoogle || []).push({});
-      //       </script>
-      //     `,
-      //   }}
-      />
+      {/* <div
+        className="my-4"
+        dangerouslySetInnerHTML={{
+          __html: `
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2655358665967568"
+                 data-ad-slot="6977336533"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          `,
+        }}
+      /> */}
+      <AdBanner slot="6977336533" />
 
       <MoreNewsSection />
       <InternationalNewsSection />
+            <AdBanner slot="6977336533" />
+
     </>
   );
 }

@@ -3,6 +3,7 @@ import NewsCompo from "./NewsCompo";
 import { baseurl, imageurl } from "@/app/components/reduxstore/utils";
 import Script from "next/script";
 import Head from "next/head"; // Use Head if you are in App Router page component
+import AdBanner from "@/app/components/AdBanner";
 
 const page = async ({ params: { slug } }) => {
   const truncateDescription = (desc, maxLength = 160) => {
@@ -85,31 +86,14 @@ const page = async ({ params: { slug } }) => {
       </Head>
 
       {/* Google AdSense */}
-      <Script
-        async
-        strategy="afterInteractive"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2655358665967568"
-        crossOrigin="anonymous"
-      />
+     
 
-      <div
-        className="my-4"
-        dangerouslySetInnerHTML={{
-          __html: `
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2655358665967568"
-                 data-ad-slot="6977336533"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          `,
-        }}
-      />
+            <AdBanner slot="6977336533" />
+      
 
       <NewsCompo slug={slug} />
+            <AdBanner slot="6977336533" />
+      
     </>
   );
 };
