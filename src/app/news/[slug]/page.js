@@ -94,6 +94,20 @@ const page = async ({ params: { slug } }) => {
         />
       </head>
 
+
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2655358665967568"
+     crossorigin="anonymous"></script>
+<!-- banner -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2655358665967568"
+     data-ad-slot="6977336533"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
       <NewsCompo slug={slug} />
     </>
   );
