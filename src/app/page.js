@@ -20,50 +20,50 @@ export default function Home() {
       <Hero />
 
       {/* Google AdSense Script */}
-      <Script
-        async
-        strategy="afterInteractive"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2655358665967568"
-        crossOrigin="anonymous"
-      />
+      // <Script
+      //   async
+      //   strategy="afterInteractive"
+      //   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2655358665967568"
+      //   crossOrigin="anonymous"
+      // />
 
       {/* Ad Banner */}
-      <div
-        className="my-4"
-        dangerouslySetInnerHTML={{
-          __html: `
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2655358665967568"
-                 data-ad-slot="6977336533"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          `,
-        }}
-      />
+      // <div
+      //   className="my-4"
+      //   dangerouslySetInnerHTML={{
+      //     __html: `
+      //       <ins class="adsbygoogle"
+      //            style="display:block"
+      //            data-ad-client="ca-pub-2655358665967568"
+      //            data-ad-slot="6977336533"
+      //            data-ad-format="auto"
+      //            data-full-width-responsive="true"></ins>
+      //       <script>
+      //            (adsbygoogle = window.adsbygoogle || []).push({});
+      //       </script>
+      //     `,
+      //   }}
+      // />
 
       <TopStoriesSection />
       <EditorPicksCarousel />
 
       {/* Another Ad Banner */}
-      <div
-        className="my-4"
-        dangerouslySetInnerHTML={{
-          __html: `
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2655358665967568"
-                 data-ad-slot="6977336533"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          `,
-        }}
+      // <div
+      //   className="my-4"
+      //   dangerouslySetInnerHTML={{
+      //     __html: `
+      //       <ins class="adsbygoogle"
+      //            style="display:block"
+      //            data-ad-client="ca-pub-2655358665967568"
+      //            data-ad-slot="6977336533"
+      //            data-ad-format="auto"
+      //            data-full-width-responsive="true"></ins>
+      //       <script>
+      //            (adsbygoogle = window.adsbygoogle || []).push({});
+      //       </script>
+      //     `,
+      //   }}
       />
 
       <MoreNewsSection />
