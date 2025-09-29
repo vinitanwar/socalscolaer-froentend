@@ -29,23 +29,7 @@ export default function Home() {
 
       <EditorPicksCarousel />
 
-      {/* Another Ad Banner */}
-      {/* <div
-        className="my-4"
-        dangerouslySetInnerHTML={{
-          __html: `
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2655358665967568"
-                 data-ad-slot="6977336533"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          `,
-        }}
-      /> */}
+      
       <AdBanner slot="6977336533" />
 
       <MoreNewsSection />
